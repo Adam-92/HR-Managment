@@ -23,9 +23,7 @@
     "migration:generate": "ts-node ./node_modules/typeorm/cli.js migration:generate -d src/db/datasource.ts",
     "migration:run": "ts-node ./node_modules/typeorm/cli.js migration:run -d src/db/datasource.ts",
     "migration:create": "ts-node ./node_modules/typeorm/cli.js migration:create",
-    "db:reset": "rimraf dist && nest build && rimraf db && ts-node ./node_modules/typeorm/cli.js migration:run -d src/db/datasource.ts && ts-node ./node_modules/typeorm/cli.js migration:run -d src/db/datasource-seeds.ts",
-    "db:seed": "ts-node ./node_modules/typeorm/cli.js migration:run -d src/db/datasource.ts && ts-node ./node_modules/typeorm/cli.js migration:run -d src/db/datasource-seeds.ts",
-    "docker:run": "docker compose up"
+    "db:reset": "rimraf dist && nest build && rimraf db && ts-node ./node_modules/typeorm/cli.js migration:run -d src/db/datasource.ts && ts-node ./node_modules/typeorm/cli.js migration:run -d src/db/datasource-seeds.ts"
   },
   "dependencies": {
     "@faker-js/faker": "^7.6.0",
@@ -69,7 +67,7 @@
     "eslint": "^8.32.0",
     "eslint-config-prettier": "^8.6.0",
     "eslint-plugin-prettier": "^4.2.1",
-    "jest": "^29.3.1",
+    "jest": "^28.0.8",
     "prettier": "^2.8.3",
     "source-map-support": "^0.5.21",
     "supertest": "^6.1.3",

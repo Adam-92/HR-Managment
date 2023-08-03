@@ -1,5 +1,5 @@
 **DANE DO LOGOWANIA:**
 
-Email:  john.doe@example.com
+**Email:**  john.doe@example.com
 
-Password: example
+**Password:** example

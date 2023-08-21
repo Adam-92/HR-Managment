@@ -1,11 +1,11 @@
 import { createBrowserRouter } from 'react-router-dom';
 
-import { CenteredLayout } from 'components/layouts/CenteredLayout/CenteredLayout';
+import { CenteredLayout } from 'layouts/CenteredLayout/CenteredLayout';
 import { Home } from 'view/home/Home';
 import { SignUp } from 'view/signup/SignUp';
 import { SignIn } from 'view/signin/SignIn';
 import { ProtectedRoutes } from 'components/ProtectedRoutes/ProtectedRoutes';
-import { DashboardLayout } from 'components/layouts/DashboardLayout/DashboardLayout';
+import { DashboardLayout } from 'layouts/DashboardLayout/DashboardLayout';
 import { Dashboard } from 'view/dashboard/Dashboard';
 import { Profile } from 'view/profile/Profile';
 import { Jobs } from 'view/jobs/Jobs';

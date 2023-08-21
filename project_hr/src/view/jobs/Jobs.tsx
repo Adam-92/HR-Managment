@@ -6,7 +6,9 @@ import { parseError } from 'errors/parseError';
 import { QUERY_KEY_GET_JOBS, getJobs } from 'api/getJobs/getJobs';
 import { Table } from 'components/Table/Table';
 
-import { jobRowRender } from './utils/jobRowRendet';
+import { JobRows } from './JobRows';
+import { columns } from './columns';
+import { JobColumns } from './JobColumns';
 
 export const Jobs = () => {
   const { data, isLoading, isError, error } = useQuery(
@@ -31,7 +33,12 @@ export const Jobs = () => {
       <Helmet>
         <title>HR Jobs</title>
       </Helmet>
-      <Table data={data} rowRender={jobRowRender} />
+      <Table
+        data={data}
+        columns={columns}
+        displayColumns={JobColumns}
+        displayRows={JobRows}
+      />
     </>
   );
 };

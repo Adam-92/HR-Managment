@@ -2,7 +2,11 @@ import { TableRow, TableCell } from '@mui/material';
 
 import type { GetJobsReponse } from 'api/getJobs/getJobs';
 
-export const jobRowRender = (data: GetJobsReponse) => {
+type JobRowsProps = {
+  data: GetJobsReponse;
+};
+
+export const JobRows = ({ data }: JobRowsProps) => {
   return (
     <>
       {data.map((job) => {

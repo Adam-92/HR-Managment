@@ -1,17 +1,22 @@
-import { TableRow, TableCell } from '@mui/material';
+import { TableBody, TableRow, TableCell, Checkbox } from '@mui/material';
 
 import type { GetJobsReponse } from 'api/getJobs/getJobs';
+import { type ControlCheckboxes } from 'components/Table/Table';
 
 type JobRowsProps = {
   data: GetJobsReponse;
+  controlCheckboxes: ControlCheckboxes;
 };
 
-export const JobRows = ({ data }: JobRowsProps) => {
+export const JobRows = ({ data, controlCheckboxes }: JobRowsProps) => {
   return (
-    <>
+    <TableBody>
       {data.map((job) => {
         return (
           <TableRow key={job.title}>
+            <TableCell padding="checkbox">
+              <Checkbox checked={controlCheckboxes.isAllCheckboxesSet} />
+            </TableCell>
             <TableCell>{job.companyName}</TableCell>
             <TableCell>{job.createdAt}</TableCell>
             <TableCell>{job.updatedAt}</TableCell>
@@ -22,6 +27,6 @@ export const JobRows = ({ data }: JobRowsProps) => {
           </TableRow>
         );
       })}
-    </>
+    </TableBody>
   );
 };

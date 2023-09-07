@@ -1,17 +1,25 @@
-import { TableRow, TableCell, TableHead } from '@mui/material';
+import { TableRow, TableCell, TableHead, Checkbox } from '@mui/material';
 
-import type { JobColumnsType } from './columns';
+import { type ControlCheckboxes } from 'components/Table/Table';
+
+import { columns } from './columns';
 
 type JobColumnsProps = {
-  columns: JobColumnsType;
+  controlCheckboxes: ControlCheckboxes;
 };
 
-export const JobColumns = ({ columns }: JobColumnsProps) => {
+export const JobColumns = ({ controlCheckboxes }: JobColumnsProps) => {
   return (
     <TableHead>
       <TableRow>
+        <TableCell padding="checkbox">
+          <Checkbox
+            checked={controlCheckboxes.isAllCheckboxesSet}
+            onChange={controlCheckboxes.handleChangeAllCheckboxes}
+          />
+        </TableCell>
         {columns.map((column) => {
-          return <TableCell>{column}</TableCell>;
+          return <TableCell key={column}>{column}</TableCell>;
         })}
       </TableRow>
     </TableHead>

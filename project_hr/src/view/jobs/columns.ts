@@ -1,13 +1,11 @@
-export const jobColumns = [
-  'id',
-  'createdAt',
-  'updatedAt',
-  'title',
-  'shortDescripption',
-  'longDescription',
-  'logo',
-  'companyName',
-  'status',
+export const columns = [
+  'ID',
+  'Created At',
+  'Updated At',
+  'Title',
+  'Short Description',
+  'Long Description',
+  'Logo',
+  'Company Name',
+  'Status',
 ] as const;
-
-export type JobColumnsType = typeof jobColumns;

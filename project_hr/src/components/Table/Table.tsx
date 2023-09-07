@@ -1,22 +1,32 @@
 import { Table as MuiTable } from '@mui/material';
 
+export type ControlCheckboxes = {
+  isAllCheckboxesSet: boolean;
+  handleChangeAllCheckboxes: () => void;
+};
+
 type TableProps<T> = {
   data: T;
-  columns: string[];
-  displayColumns: (props: { columns: string[] }) => JSX.Element;
-  displayRows: (props: { data: T }) => JSX.Element;
+  controlCheckboxes: ControlCheckboxes;
+  columnsRenderer: (props: {
+    controlCheckboxes: ControlCheckboxes;
+  }) => JSX.Element;
+  rowsRenderer: (props: {
+    data: T;
+    controlCheckboxes: ControlCheckboxes;
+  }) => JSX.Element;
 };
 
 export const Table = <T extends any[]>({
   data,
-  columns,
-  displayColumns: DisplayColumns,
-  displayRows: DisplayRows,
+  controlCheckboxes,
+  columnsRenderer: ColumnsRenderer,
+  rowsRenderer: RowsRenderer,
 }: TableProps<T>) => {
   return (
     <MuiTable>
-      <DisplayColumns columns={columns} />
-      <DisplayRows data={data} />
+      <ColumnsRenderer controlCheckboxes={controlCheckboxes} />
+      <RowsRenderer data={data} controlCheckboxes={controlCheckboxes} />
     </MuiTable>
   );
 };

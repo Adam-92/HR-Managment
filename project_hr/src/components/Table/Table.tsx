@@ -1,5 +1,7 @@
 import { Table as MuiTable } from '@mui/material';
 
+import { TableProvider } from '../../context/Table/TableProvider';
+
 export type ControlCheckboxes = {
   isAllCheckboxesSet: boolean;
   handleChangeAllCheckboxes: () => void;
@@ -7,26 +9,21 @@ export type ControlCheckboxes = {
 
 type TableProps<T> = {
   data: T;
-  controlCheckboxes: ControlCheckboxes;
-  columnsRenderer: (props: {
-    controlCheckboxes: ControlCheckboxes;
-  }) => JSX.Element;
-  rowsRenderer: (props: {
-    data: T;
-    controlCheckboxes: ControlCheckboxes;
-  }) => JSX.Element;
+  columnsRenderer: () => JSX.Element;
+  rowsRenderer: (props: { data: T }) => JSX.Element;
 };
 
 export const Table = <T extends any[]>({
   data,
-  controlCheckboxes,
   columnsRenderer: ColumnsRenderer,
   rowsRenderer: RowsRenderer,
 }: TableProps<T>) => {
   return (
-    <MuiTable>
-      <ColumnsRenderer controlCheckboxes={controlCheckboxes} />
-      <RowsRenderer data={data} controlCheckboxes={controlCheckboxes} />
-    </MuiTable>
+    <TableProvider>
+      <MuiTable>
+        <ColumnsRenderer />
+        <RowsRenderer data={data} />
+      </MuiTable>
+    </TableProvider>
   );
 };

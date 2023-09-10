@@ -5,7 +5,6 @@ import { CircularProgress, Alert } from '@mui/material';
 import { parseError } from 'errors/parseError';
 import { QUERY_KEY_GET_JOBS, getJobs } from 'api/getJobs/getJobs';
 import { Table } from 'components/Table/Table';
-import { useTable } from 'components/Table/useTable';
 
 import { JobRows } from './JobRows';
 import { JobColumns } from './JobColumns';
@@ -15,7 +14,6 @@ export const Jobs = () => {
     [QUERY_KEY_GET_JOBS],
     getJobs,
   );
-  const { controlCheckboxes } = useTable();
 
   if (isLoading) {
     return <CircularProgress />;
@@ -34,12 +32,7 @@ export const Jobs = () => {
       <Helmet>
         <title>HR Jobs</title>
       </Helmet>
-      <Table
-        data={data}
-        controlCheckboxes={controlCheckboxes}
-        columnsRenderer={JobColumns}
-        rowsRenderer={JobRows}
-      />
+      <Table data={data} columnsRenderer={JobColumns} rowsRenderer={JobRows} />
     </>
   );
 };

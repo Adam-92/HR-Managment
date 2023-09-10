@@ -1,21 +1,22 @@
 import { TableRow, TableCell, TableHead, Checkbox } from '@mui/material';
 
-import { type ControlCheckboxes } from 'components/Table/Table';
+import { useTable } from 'context/Table/useTable';
 
 import { columns } from './columns';
 
-type JobColumnsProps = {
-  controlCheckboxes: ControlCheckboxes;
-};
+export const JobColumns = () => {
+  const { markAllRows, markedRows, isMarkAllRows } = useTable();
 
-export const JobColumns = ({ controlCheckboxes }: JobColumnsProps) => {
+  const someRowsAreMarked = markedRows.length > 0;
+
   return (
     <TableHead>
       <TableRow>
         <TableCell padding="checkbox">
           <Checkbox
-            checked={controlCheckboxes.isAllCheckboxesSet}
-            onChange={controlCheckboxes.handleChangeAllCheckboxes}
+            checked={isMarkAllRows}
+            indeterminate={someRowsAreMarked && !isMarkAllRows}
+            onChange={markAllRows}
           />
         </TableCell>
         {columns.map((column) => {

@@ -57,11 +57,11 @@ export const TableProvider = ({ children }: TableProviderProps) => {
     [],
   );
 
-  const cutSelectedRangeOfData = () => {
+  const cutSelectedRangeOfData = useCallback(() => {
     const startIndex = (currentPage - 1) * parseInt(rowsPerPage, 10);
     const endIndex = startIndex + parseInt(rowsPerPage, 10);
     return { startIndex, endIndex };
-  };
+  }, [currentPage, rowsPerPage]);
 
   const value = useMemo(
     () => ({

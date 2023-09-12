@@ -1,4 +1,5 @@
-import { useState, useMemo, useCallback } from 'react';
+import { useState, useMemo, useCallback, type ChangeEvent } from 'react';
+import { type SelectChangeEvent } from '@mui/material';
 
 import { TableContext } from './context';
 
@@ -6,10 +7,11 @@ type TableProviderProps = {
   children: React.ReactNode;
 };
 
+export type RowsPerPageType = '10' | '25' | '50';
+
 export const TableProvider = ({ children }: TableProviderProps) => {
   const [isMarkAllRows, setIsMarkAllRows] = useState(false);
   const [markedRows, setMarkedRows] = useState<string[]>([]);
-  console.log('🚀  markedRows:', markedRows);
 
   const someRowsAreMarked = markedRows.length > 0;
 
@@ -39,8 +41,35 @@ export const TableProvider = ({ children }: TableProviderProps) => {
     [markedRows],
   );
 
+  /* ----------------PAGINATION------------------- */
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const [rowsPerPage, setRowsPerPage] = useState<RowsPerPageType>('10');
+
+  const handleChangeRowsPerPage = useCallback((event: SelectChangeEvent) => {
+    setRowsPerPage(event.target.value as RowsPerPageType);
+  }, []);
+
+  const handleChangePage = useCallback(
+    (event: ChangeEvent<unknown>, value: number) => {
+      setCurrentPage(value);
+    },
+    [],
+  );
+
+  const cutSelectedRangeOfData = () => {
+    const startIndex = (currentPage - 1) * parseInt(rowsPerPage, 10);
+    const endIndex = startIndex + parseInt(rowsPerPage, 10);
+    return { startIndex, endIndex };
+  };
+
   const value = useMemo(
     () => ({
+      currentPage,
+      handleChangePage,
+      rowsPerPage,
+      handleChangeRowsPerPage,
+      cutSelectedRangeOfData,
       markedRows,
       isMarkAllRows,
       markSingleRow,
@@ -49,6 +78,11 @@ export const TableProvider = ({ children }: TableProviderProps) => {
       rowIsInsideMarkedRows,
     }),
     [
+      cutSelectedRangeOfData,
+      currentPage,
+      handleChangePage,
+      rowsPerPage,
+      handleChangeRowsPerPage,
       markedRows,
       isMarkAllRows,
       rowIsInsideMarkedRows,

@@ -2,10 +2,8 @@ import { Table as MuiTable } from '@mui/material';
 
 import { TableProvider } from '../../context/Table/TableProvider';
 
-export type ControlCheckboxes = {
-  isAllCheckboxesSet: boolean;
-  handleChangeAllCheckboxes: () => void;
-};
+import { SelectRowsPerPage } from './SelectRowsPerPage ';
+import { Pagination } from './Pagination';
 
 type TableProps<T> = {
   data: T;
@@ -20,10 +18,12 @@ export const Table = <T extends any[]>({
 }: TableProps<T>) => {
   return (
     <TableProvider>
+      <SelectRowsPerPage />
       <MuiTable>
         <ColumnsRenderer />
         <RowsRenderer data={data} />
       </MuiTable>
+      <Pagination totalRows={data.length} />
     </TableProvider>
   );
 };

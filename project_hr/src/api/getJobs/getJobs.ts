@@ -16,6 +16,8 @@ export type GetJobs = {
 
 export type GetJobsReponse = GetJobs[];
 
+export type GetJobsKeys = keyof GetJobs;
+
 export const getJobs = async () => {
   const { data } = await axios.get<GetJobsReponse>('/jobs');
   return data;

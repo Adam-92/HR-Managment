@@ -4,7 +4,7 @@ import { RouterProvider } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
 import { router } from 'routing/Router';
-import { AppProviders } from 'appProviders/AppProviders';
+import { AppProviders } from 'providers/appProviders/AppProviders';
 
 import { reportWebVitals } from './reportWebVitals';
 

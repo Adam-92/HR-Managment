@@ -1,16 +1,15 @@
 import { FormControl, Select, MenuItem, FormHelperText } from '@mui/material';
 
-import { useTable } from 'context/Table/useTable';
+import { useTable } from 'providers/table/useTable';
 
 export const SelectRowsPerPage = () => {
-  const { rowsPerPage, handleChangeRowsPerPage } = useTable();
-
+  const { pagination } = useTable();
   return (
     <FormControl sx={{ m: 1, minWidth: 120 }}>
       <FormHelperText>Show Rows:</FormHelperText>
       <Select
-        value={rowsPerPage}
-        onChange={handleChangeRowsPerPage}
+        value={pagination.rowsPerPage}
+        onChange={pagination.handleChangeRowsPerPage}
         inputProps={{ 'aria-label': 'Without label' }}
       >
         <MenuItem value="10">10</MenuItem>

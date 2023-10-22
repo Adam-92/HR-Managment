@@ -1,10 +1,12 @@
 export const columns = [
-  'Company Name',
-  'Created At',
-  'Logo',
-  'Long Description',
-  'Short Description',
-  'Status',
-  'Title',
-  'Upadated At',
+  'companyName',
+  'createdAt',
+  'logo',
+  'longDescription',
+  'shortDescription',
+  'status',
+  'title',
+  'updatedAt',
 ] as const;
+
+export type ColumnsType = typeof columns;

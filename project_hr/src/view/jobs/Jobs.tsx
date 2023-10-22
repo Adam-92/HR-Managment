@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-shadow */
 import { Helmet } from 'react-helmet-async';
 import { useQuery } from '@tanstack/react-query';
 import { CircularProgress, Alert } from '@mui/material';
@@ -5,7 +6,9 @@ import { CircularProgress, Alert } from '@mui/material';
 import { parseError } from 'errors/parseError';
 import { QUERY_KEY_GET_JOBS, getJobs } from 'api/getJobs/getJobs';
 import { Table } from 'components/Table/Table';
+import { TableProvider } from 'providers/table/TableProvider';
 
+import { columns } from './columns';
 import { JobRows } from './JobRows';
 import { JobColumns } from './JobColumns';
 
@@ -24,7 +27,7 @@ export const Jobs = () => {
   }
 
   if (data.length < 1) {
-    return <Alert severity="info">There in no any data</Alert>;
+    return <Alert severity="info">There is no any data</Alert>;
   }
 
   return (
@@ -32,7 +35,16 @@ export const Jobs = () => {
       <Helmet>
         <title>HR Jobs</title>
       </Helmet>
-      <Table data={data} columnsRenderer={JobColumns} rowsRenderer={JobRows} />
+      <TableProvider data={data}>
+        {(data) => (
+          <Table
+            data={data}
+            columns={columns}
+            columnsRenderer={JobColumns}
+            rowsRenderer={JobRows}
+          />
+        )}
+      </TableProvider>
     </>
   );
 };

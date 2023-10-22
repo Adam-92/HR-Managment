@@ -30,7 +30,6 @@ export const ResetPassword = () => {
   const logOut = useLogOut();
   const handleOnSuccess = () => {
     handleOpenSnackbar('You have sucessfully changed the password', 'success');
-    /* Pewnie średnio... chodzi o to by było ładniejsze przejście. Pokazuje się komunikat, chowa, a następnie wylogoowuje. Czas jest dobrany na oko. */
     setTimeout(logOut, 2000);
   };
 
@@ -42,7 +41,7 @@ export const ResetPassword = () => {
       onSuccess: handleOnSuccess,
     },
   );
-  /* Tutaj będzie wysłany, też repeatNewPassword  */
+
   const onSubmit = (payload: ResetPasswordPayload) => mutate(payload);
 
   return (

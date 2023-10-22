@@ -1,29 +1,33 @@
 import { Table as MuiTable } from '@mui/material';
 
-import { TableProvider } from '../../context/Table/TableProvider';
+import type { ColumnsType } from 'view/jobs/columns';
 
-import { SelectRowsPerPage } from './SelectRowsPerPage ';
-import { Pagination } from './Pagination';
+import { Pagination } from './Pagination/Pagination';
+import { SelectRowsPerPage } from './Pagination/SelectRowsPerPage';
+import { Search } from './Search/Search';
 
-type TableProps<T> = {
+export type TableProps<T> = {
   data: T;
-  columnsRenderer: () => JSX.Element;
+  columns: ColumnsType;
+  columnsRenderer: (props: { columns: ColumnsType }) => JSX.Element;
   rowsRenderer: (props: { data: T }) => JSX.Element;
 };
 
 export const Table = <T extends any[]>({
   data,
+  columns,
   columnsRenderer: ColumnsRenderer,
   rowsRenderer: RowsRenderer,
 }: TableProps<T>) => {
   return (
-    <TableProvider>
+    <>
       <SelectRowsPerPage />
+      <Search />
       <MuiTable>
-        <ColumnsRenderer />
+        <ColumnsRenderer columns={columns} />
         <RowsRenderer data={data} />
       </MuiTable>
-      <Pagination totalRows={data.length} />
-    </TableProvider>
+      <Pagination />
+    </>
   );
 };

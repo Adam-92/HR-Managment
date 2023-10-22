@@ -1,25 +1,27 @@
 import { TableBody, TableRow, TableCell } from '@mui/material';
 
-import { Checkbox } from 'components/Table/Checkbox';
+import { CheckboxRow } from 'components/Table/CheckboxRow/CheckboxRow';
 import type { GetJobsReponse } from 'api/getJobs/getJobs';
-import { useTable } from 'context/Table/useTable';
+import { useTable } from 'providers/table/useTable';
 
 type JobRowsProps = {
   data: GetJobsReponse;
 };
 
 export const JobRows = ({ data }: JobRowsProps) => {
-  const { cutSelectedRangeOfData } = useTable();
+  const { search, pagination } = useTable();
 
-  const { startIndex, endIndex } = cutSelectedRangeOfData();
+  const searchedData = search.searchData();
+  const { startIndex, endIndex } = pagination.cutSelectedRangeOfData();
 
+  const renderData = searchedData ?? data;
   return (
     <TableBody>
-      {data
+      {renderData
         .map((job) => {
           return (
             <TableRow key={job.title}>
-              <Checkbox id={job.id} />
+              <CheckboxRow id={job.id} />
               <TableCell>{job.companyName}</TableCell>
               <TableCell>{job.createdAt}</TableCell>
               <TableCell>{job.logo}</TableCell>

@@ -1,26 +1,31 @@
 import { TableRow, TableCell, TableHead, Checkbox } from '@mui/material';
 
-import { useTable } from 'context/Table/useTable';
+import { useTable } from 'providers/table/useTable';
 
-import { columns } from './columns';
+import { JobColumn } from './JobColumn';
+import type { ColumnsType } from './columns';
 
-export const JobColumns = () => {
-  const { markAllRows, markedRows, isMarkAllRows } = useTable();
+type JobColumnsProps = {
+  columns: ColumnsType;
+};
 
-  const someRowsAreMarked = markedRows.length > 0;
+export const JobColumns = ({ columns }: JobColumnsProps) => {
+  const { checkboxRow } = useTable();
 
   return (
     <TableHead>
       <TableRow>
         <TableCell padding="checkbox">
           <Checkbox
-            checked={isMarkAllRows}
-            indeterminate={someRowsAreMarked && !isMarkAllRows}
-            onChange={markAllRows}
+            checked={checkboxRow.isMarkAllRows}
+            indeterminate={
+              checkboxRow.someRowsAreMarked && !checkboxRow.isMarkAllRows
+            }
+            onChange={checkboxRow.onChangeAllRows}
           />
         </TableCell>
         {columns.map((column) => {
-          return <TableCell key={column}>{column}</TableCell>;
+          return <JobColumn column={column} key={column} />;
         })}
       </TableRow>
     </TableHead>

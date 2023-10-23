@@ -1,6 +1,6 @@
 import type { AxiosInstance } from 'axios';
 
-import { tokenStorage } from 'utils/tokenStorageClass';
+import { tokenStorage } from 'class/tokenStorageClass';
 
 import type { Tokens } from './axios.types';
 

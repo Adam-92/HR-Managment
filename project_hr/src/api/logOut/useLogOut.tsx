@@ -2,7 +2,7 @@ import { useCallback, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { QueryCache } from '@tanstack/react-query';
 
-import { tokenStorage } from 'utils/tokenStorageClass';
+import { tokenStorage } from 'class/tokenStorageClass';
 import { Routes } from 'routing/Routes';
 
 export const useLogOut = () => {

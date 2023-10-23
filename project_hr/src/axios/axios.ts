@@ -1,7 +1,7 @@
 import _axios, { type InternalAxiosRequestConfig } from 'axios';
 import createAuthRefreshInterceptor from 'axios-auth-refresh';
 
-import { tokenStorage } from 'utils/tokenStorageClass';
+import { tokenStorage } from 'class/tokenStorageClass';
 
 import { tokensRotationRequest } from './tokenRotationRequest';
 

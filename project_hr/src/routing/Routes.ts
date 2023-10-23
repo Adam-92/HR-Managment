@@ -4,6 +4,7 @@ export const Routes = {
   signin: '/signin',
   dashboard: '/dashboard',
   jobs: '/jobs',
+  job: '/jobs/:id',
   candidates: '/candidates',
   calendar: '/calendar',
   profile: '/profile',

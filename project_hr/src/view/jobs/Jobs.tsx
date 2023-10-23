@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-shadow */
 import { Helmet } from 'react-helmet-async';
 import { useQuery } from '@tanstack/react-query';
-import { CircularProgress, Alert } from '@mui/material';
+import { Link } from 'react-router-dom';
+import { CircularProgress, Alert, Button } from '@mui/material';
 
 import { parseError } from 'errors/parseError';
 import { QUERY_KEY_GET_JOBS, getJobs } from 'api/getJobs/getJobs';
@@ -37,12 +38,22 @@ export const Jobs = () => {
       </Helmet>
       <TableProvider data={data}>
         {(data) => (
-          <Table
-            data={data}
-            columns={columns}
-            columnsRenderer={JobColumns}
-            rowsRenderer={JobRows}
-          />
+          <>
+            <Button
+              component={Link}
+              to="asdasd"
+              variant="contained"
+              color="success"
+            >
+              + Add
+            </Button>
+            <Table
+              data={data}
+              columns={columns}
+              columnsRenderer={JobColumns}
+              rowsRenderer={JobRows}
+            />
+          </>
         )}
       </TableProvider>
     </>

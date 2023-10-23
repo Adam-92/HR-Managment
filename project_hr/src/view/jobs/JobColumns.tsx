@@ -1,4 +1,10 @@
-import { TableRow, TableCell, TableHead, Checkbox } from '@mui/material';
+import {
+  TableRow,
+  TableCell,
+  TableHead,
+  Checkbox,
+  TableSortLabel,
+} from '@mui/material';
 
 import { useTable } from 'providers/table/useTable';
 
@@ -27,6 +33,9 @@ export const JobColumns = ({ columns }: JobColumnsProps) => {
         {columns.map((column) => {
           return <JobColumn column={column} key={column} />;
         })}
+        <TableCell>
+          <TableSortLabel>Actions</TableSortLabel>
+        </TableCell>
       </TableRow>
     </TableHead>
   );

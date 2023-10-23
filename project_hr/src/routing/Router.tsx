@@ -9,6 +9,7 @@ import { DashboardLayout } from 'layouts/DashboardLayout/DashboardLayout';
 import { Dashboard } from 'view/dashboard/Dashboard';
 import { Profile } from 'view/profile/Profile';
 import { Jobs } from 'view/jobs/Jobs';
+import { Job } from 'view/job/Job';
 import { UnprotectedRoutes } from 'components/UnprotectedRoutes/UnprotectedRoutes';
 
 import { Routes } from './Routes';
@@ -53,6 +54,10 @@ export const router = createBrowserRouter([
           {
             path: Routes.jobs,
             element: <Jobs />,
+          },
+          {
+            path: Routes.job,
+            element: <Job />,
           },
         ],
       },

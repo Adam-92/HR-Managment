@@ -6,7 +6,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useMutation } from '@tanstack/react-query';
 
 import { Routes } from 'routing/Routes';
-import { tokenStorage } from 'utils/tokenStorageClass';
+import { tokenStorage } from 'class/tokenStorageClass';
 import { parseError } from 'errors/parseError';
 import type { Tokens } from 'axios/axios.types';
 

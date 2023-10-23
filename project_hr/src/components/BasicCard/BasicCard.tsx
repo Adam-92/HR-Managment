@@ -1,7 +1,10 @@
 import { Card, CardContent, Typography } from '@mui/material';
 import CountUp from 'react-countup';
 
-import type { BasicCardProps } from './BasicCard.type';
+type BasicCardProps = {
+  text: string;
+  data: unknown[];
+};
 
 export const BasicCard = ({ text, data }: BasicCardProps) => {
   return (

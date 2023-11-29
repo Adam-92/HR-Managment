@@ -4,7 +4,7 @@ import {
   validateString,
   validateEmail,
   repeatString,
-} from 'validation/patterns';
+} from '../../validation/auth';
 
 export const schema = yup.object({
   firstName: validateString,

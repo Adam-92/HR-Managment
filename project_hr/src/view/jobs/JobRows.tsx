@@ -24,7 +24,7 @@ export const JobRows = ({ data }: JobRowsProps) => {
       {renderData
         .map((job) => {
           return (
-            <TableRow key={job.title}>
+            <TableRow key={job.id}>
               <CheckboxRow id={job.id} />
               <TableCell>{job.companyName}</TableCell>
               <TableCell>{formatDate(job.createdAt)}</TableCell>

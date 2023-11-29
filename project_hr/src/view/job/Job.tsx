@@ -1,66 +1,78 @@
 import { useParams, Link } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
-import {
-  CircularProgress,
-  Alert,
-  Card,
-  CardContent,
-  Typography,
-  Button,
-} from '@mui/material';
-import { Helmet } from 'react-helmet-async';
+import { Button, Box, TextField } from '@mui/material';
 
-import { Routes } from 'routing/Routes';
-import { parseError } from 'errors/parseError';
+import { getEditJobUrl, Routes } from 'routing/Routes';
 import { getJob, QUERY_KEY_GET_JOB } from 'api/getJob/getJob';
 import { formatDate } from 'utils/formatDate';
+import { Header } from 'components/Header/Header';
+import { DataStatusHandler } from 'components/DataStatusHandler/DataStatusHandler';
 
 export const Job = () => {
   const { id } = useParams();
 
   if (!id) throw Error('No id in params');
 
-  const { data, isLoading, isError, error } = useQuery(
-    [QUERY_KEY_GET_JOB],
-    () => getJob(id),
-    { retry: 1 },
-  );
-
-  if (isLoading) {
-    return <CircularProgress />;
-  }
-
-  if (isError) {
-    return <Alert severity="warning">{parseError(error)}</Alert>;
-  }
+  const results = useQuery([QUERY_KEY_GET_JOB], () => getJob(id));
 
   return (
-    <>
-      <Helmet>
-        <title>{data.title}</title>
-      </Helmet>
-      <Card sx={{ minWidth: 275 }}>
-        <CardContent>
-          <Typography sx={{ fontSize: 25 }} color="text.primary" gutterBottom>
-            {data.title}
-          </Typography>
-          <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-            Company: {data.companyName}
-          </Typography>
-          <Typography variant="h5" component="div">
-            Created At: {formatDate(data.createdAt)}
-          </Typography>
-          <Typography sx={{ mb: 1.5 }} color="text.secondary">
-            description: {data.longDescription}
-          </Typography>
-        </CardContent>
-        <Button component={Link} to="" variant="contained" color="warning">
-          Edit
-        </Button>
-        <Button component={Link} to={Routes.jobs} variant="contained">
-          Back To List
-        </Button>
-      </Card>
-    </>
+    <DataStatusHandler {...results}>
+      {(data) => (
+        <>
+          <Header title={data.title} />
+          <Box
+            component="form"
+            sx={{
+              '& > :not(style)': { m: 1, width: '25ch' },
+            }}
+            noValidate
+            autoComplete="off"
+          >
+            <TextField
+              disabled
+              id={data.id}
+              label="id"
+              variant="standard"
+              value={data.id}
+            />
+            <TextField
+              id={data.title}
+              label="title"
+              variant="standard"
+              value={data.title}
+            />
+            <TextField
+              id={data.companyName}
+              label="companyName"
+              variant="standard"
+              value={data.companyName}
+            />
+            <TextField
+              id={formatDate(data.createdAt)}
+              label="createdAt"
+              variant="standard"
+              value={formatDate(data.createdAt)}
+            />
+            <TextField
+              id="standard-basic"
+              label="longDescription"
+              variant="standard"
+              value={data.longDescription}
+            />
+          </Box>
+          <Button
+            component={Link}
+            to={getEditJobUrl(id)}
+            variant="contained"
+            color="warning"
+          >
+            Edit
+          </Button>
+          <Button component={Link} to={Routes.jobs} variant="contained">
+            Back To List
+          </Button>
+        </>
+      )}
+    </DataStatusHandler>
   );
 };

@@ -1,8 +1,8 @@
 import { Box, Typography } from '@mui/material';
 
 import { AboutMe } from './AboutMe';
-import { ResetPassword } from './ResetPassword/ResetPassword';
-import { ResetUserName } from './ResetUserName/ResetUserName';
+import { ResetPassword } from './resetPassword/ResetPassword';
+import { ResetUsername } from './resetUsername/ResetUsername';
 
 export const Profile = () => {
   return (
@@ -19,7 +19,7 @@ export const Profile = () => {
         }}
       >
         <ResetPassword />
-        <ResetUserName />
+        <ResetUsername />
       </Box>
     </>
   );

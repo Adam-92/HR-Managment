@@ -3,7 +3,7 @@ import { Routes } from 'routing/Routes';
 export const sidebarTabs = [
   {
     name: 'Home',
-    link: Routes.home,
+    link: Routes.dashboard,
   },
   {
     name: 'Jobs',

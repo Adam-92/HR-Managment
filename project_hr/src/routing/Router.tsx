@@ -10,9 +10,10 @@ import { Dashboard } from 'view/dashboard/Dashboard';
 import { Profile } from 'view/profile/Profile';
 import { Jobs } from 'view/jobs/Jobs';
 import { Job } from 'view/job/Job';
+import { AddJob } from 'view/addJob/AddJob';
 import { UnprotectedRoutes } from 'components/UnprotectedRoutes/UnprotectedRoutes';
 
-import { Routes } from './Routes';
+import { getSingleJobUrl, Routes } from './Routes';
 
 export const router = createBrowserRouter([
   {
@@ -56,8 +57,12 @@ export const router = createBrowserRouter([
             element: <Jobs />,
           },
           {
-            path: Routes.job,
+            path: getSingleJobUrl(':id'),
             element: <Job />,
+          },
+          {
+            path: Routes.addJob,
+            element: <AddJob />,
           },
         ],
       },

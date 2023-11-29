@@ -1,5 +1,4 @@
-import { Helmet } from 'react-helmet-async';
-import { Form, Button, Spinner, Nav } from 'react-bootstrap';
+import { Form, Button, Nav } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -7,22 +6,17 @@ import { useMutation } from '@tanstack/react-query';
 
 import { Routes } from 'routing/Routes';
 import { parseError } from 'errors/parseError';
+import { register as registerUser } from 'api/register/register';
+import type { SignUpPayload } from 'api/register/register';
+import { Header } from 'components/Header/Header';
 
-import { axios } from '../../axios/axios';
-
-import { schema } from './validate';
-import type { SignUpPayload } from './SignUp.types';
+import { schema } from './validation';
 
 export const SignUp = () => {
   const navigate = useNavigate();
-  const { mutate, isLoading, isError, error } = useMutation(
-    (payload: SignUpPayload) => {
-      return axios.post('auth/register', payload);
-    },
-    {
-      onSuccess: () => navigate(Routes.signin),
-    },
-  );
+  const { mutate, isError, error } = useMutation(registerUser, {
+    onSuccess: () => navigate(Routes.signin),
+  });
 
   const {
     register,
@@ -35,15 +29,9 @@ export const SignUp = () => {
 
   const onSubmit = async (payload: SignUpPayload) => mutate(payload);
 
-  if (isLoading) {
-    return <Spinner animation="border" role="status" />;
-  }
-
   return (
     <>
-      <Helmet>
-        <title>SingUp</title>
-      </Helmet>
+      <Header title="SignUp" />
       <Form onSubmit={handleSubmit(onSubmit)}>
         <Form.Group className="mb-3" controlId="firstName">
           <Form.Label>First name: </Form.Label>

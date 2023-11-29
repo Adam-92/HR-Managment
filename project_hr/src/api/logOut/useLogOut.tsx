@@ -10,9 +10,9 @@ export const useLogOut = () => {
   const query = useMemo(() => new QueryCache(), []);
 
   const logOut = useCallback(() => {
+    navigate(Routes.home);
     tokenStorage.clearTokens();
     query.clear();
-    navigate(Routes.home);
   }, [navigate, query]);
 
   return logOut;

@@ -1,6 +1,6 @@
 import * as yup from 'yup';
 
-import { validateString, repeatString } from 'validation/patterns';
+import { validateString, repeatString } from 'validation/auth';
 
 export const schema = yup.object({
   oldPassword: validateString,

@@ -1,61 +1,53 @@
 /* eslint-disable @typescript-eslint/no-shadow */
-import { Helmet } from 'react-helmet-async';
 import { useQuery } from '@tanstack/react-query';
 import { Link } from 'react-router-dom';
-import { CircularProgress, Alert, Button } from '@mui/material';
+import { Alert, Button } from '@mui/material';
 
-import { parseError } from 'errors/parseError';
+import { Routes } from 'routing/Routes';
 import { QUERY_KEY_GET_JOBS, getJobs } from 'api/getJobs/getJobs';
 import { Table } from 'components/Table/Table';
 import { TableProvider } from 'providers/table/TableProvider';
+import { Header } from 'components/Header/Header';
+import { DataStatusHandler } from 'components/DataStatusHandler/DataStatusHandler';
 
 import { columns } from './columns';
 import { JobRows } from './JobRows';
 import { JobColumns } from './JobColumns';
 
 export const Jobs = () => {
-  const { data, isLoading, isError, error } = useQuery(
-    [QUERY_KEY_GET_JOBS],
-    getJobs,
-  );
-
-  if (isLoading) {
-    return <CircularProgress />;
-  }
-
-  if (isError) {
-    return <Alert severity="warning">{parseError(error)}</Alert>;
-  }
-
-  if (data.length < 1) {
-    return <Alert severity="info">There is no any data</Alert>;
-  }
+  const results = useQuery([QUERY_KEY_GET_JOBS], getJobs);
 
   return (
     <>
-      <Helmet>
-        <title>HR Jobs</title>
-      </Helmet>
-      <TableProvider data={data}>
-        {(data) => (
-          <>
-            <Button
-              component={Link}
-              to="asdasd"
-              variant="contained"
-              color="success"
-            >
-              + Add
-            </Button>
-            <Table
-              data={data}
-              columns={columns}
-              columnsRenderer={JobColumns}
-              rowsRenderer={JobRows}
-            />
-          </>
-        )}
-      </TableProvider>
+      <Header title="HR Jobs" />
+      <DataStatusHandler {...results}>
+        {(data) =>
+          data.length > 1 ? (
+            <TableProvider data={data}>
+              {(data) => (
+                <>
+                  <Button
+                    component={Link}
+                    to={Routes.addJob}
+                    variant="contained"
+                    color="success"
+                  >
+                    + Add
+                  </Button>
+                  <Table
+                    data={data}
+                    columns={columns}
+                    columnsRenderer={JobColumns}
+                    rowsRenderer={JobRows}
+                  />
+                </>
+              )}
+            </TableProvider>
+          ) : (
+            <Alert severity="info">There is no any data</Alert>
+          )
+        }
+      </DataStatusHandler>
     </>
   );
 };

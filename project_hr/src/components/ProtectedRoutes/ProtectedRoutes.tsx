@@ -11,8 +11,8 @@ export const ProtectedRoutes = () => {
     return <CircularProgress />;
   }
 
-  if (!user.isSuccess) {
-    return <Navigate to={Routes.home} />;
+  if (user.isSuccess) {
+    return <Outlet />;
   }
-  return <Outlet />;
+  return <Navigate to={Routes.home} />;
 };

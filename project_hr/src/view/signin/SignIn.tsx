@@ -50,10 +50,7 @@ export const SignIn = () => {
     },
   });
 
-  const onSubmit = async (payload: SignInPayload) => {
-    console.log(payload);
-    mutate(payload);
-  };
+  const onSubmit = async (payload: SignInPayload) => mutate(payload);
 
   return (
     <>

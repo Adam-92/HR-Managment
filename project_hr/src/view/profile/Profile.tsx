@@ -2,6 +2,7 @@ import { Box, Typography } from '@mui/material';
 
 import { AboutMe } from './AboutMe';
 import { ResetPassword } from './resetPassword/ResetPassword';
+// eslint-disable-next-line import/no-unresolved
 import { ResetUsername } from './resetUsername/ResetUsername';
 
 export const Profile = () => {

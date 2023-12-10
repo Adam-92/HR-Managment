@@ -7,7 +7,7 @@ export const validateText = yup
   .trim()
   .required(formError.required)
   .min(5, formError.minMaxLength)
-  .max(18, formError.minMaxLength);
+  .max(15, formError.minMaxLength);
 
 export const validateLongText = yup
   .string()

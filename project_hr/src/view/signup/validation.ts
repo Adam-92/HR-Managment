@@ -11,5 +11,5 @@ export const schema = yup.object({
   lastName: validateString,
   email: validateEmail,
   password: validateString,
-  repeatPassword: repeatString('repeatPassword'),
+  repeatPassword: repeatString('password'),
 });

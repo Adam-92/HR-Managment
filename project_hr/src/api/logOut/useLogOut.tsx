@@ -7,11 +7,13 @@ import { Routes } from 'routing/Routes';
 
 export const useLogOut = () => {
   const navigate = useNavigate();
+
   const query = useMemo(() => new QueryCache(), []);
 
   const logOut = useCallback(() => {
-    navigate(Routes.home);
     tokenStorage.clearTokens();
+    navigate(Routes.home);
+
     query.clear();
   }, [navigate, query]);
 

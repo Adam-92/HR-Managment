@@ -12,11 +12,11 @@ export type Position = {
   status: 'CLOSED' | 'OPEN';
 };
 
-export type GetPositionsResponse = Position[];
+export type GetPositions = Position[];
 
 export const QUERY_KEY_POSITIONS = 'positions';
 
 export const getPositions = async () => {
-  const { data } = await axios.get<GetPositionsResponse>('/jobs');
+  const { data } = await axios.get<GetPositions>('/jobs');
   return data;
 };

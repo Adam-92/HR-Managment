@@ -5,10 +5,10 @@ import {
   FormGroup,
   Checkbox,
   FormControlLabel,
-  Alert,
   Typography,
 } from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom';
+import { useSnackbar } from 'notistack';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useMutation } from '@tanstack/react-query';
@@ -20,6 +20,7 @@ import { parseError } from 'errors/parseError';
 import type { Tokens } from 'axios/axios.types';
 import type { SignInPayload } from 'api/logIn/logIn';
 import { Header } from 'components/Header/Header';
+import { SubmitButton } from 'components/SubmitButton/SubmitButton';
 
 import { schema } from './validation';
 
@@ -41,12 +42,15 @@ export const SignIn = () => {
   const isRememberMe = !!watch('rememberMe');
 
   const navigate = useNavigate();
-
-  const { mutate, isError, error } = useMutation(logIn, {
+  const { enqueueSnackbar } = useSnackbar();
+  const { mutate, isLoading } = useMutation(logIn, {
     onSuccess: ({ data }: SignInResponse) => {
       tokenStorage.saveAccessToken(data.accessToken, isRememberMe);
       tokenStorage.saveRefreshToken(data.refreshToken, isRememberMe);
       navigate(Routes.dashboard);
+    },
+    onError: (error) => {
+      enqueueSnackbar(`${parseError(error)}`, { variant: 'error' });
     },
   });
 
@@ -58,7 +62,7 @@ export const SignIn = () => {
       <Typography variant="h3">SIGN IN</Typography>
       <Box component="form" onSubmit={handleSubmit(onSubmit)}>
         <TextField
-          id="email:"
+          id="email"
           label="Email"
           {...register('email')}
           error={!!errors.email}
@@ -79,10 +83,7 @@ export const SignIn = () => {
             label="Remember Me"
           />
         </FormGroup>
-        <Button variant="contained" type="submit">
-          Sign In
-        </Button>
-        {isError && <Alert severity="error">{parseError(error)}</Alert>}
+        <SubmitButton isLoading={isLoading} text="Sign In" />
         <Typography variant="subtitle2">Dont have account?</Typography>
         <Button
           component={Link}

@@ -12,4 +12,4 @@ export const Routes = {
 } as const;
 
 export const getSingleJobUrl = (jobId: string) => `${Routes.jobs}/${jobId}`;
-export const getEditJobUrl = (jobId: string) => `${Routes.editJob}/${jobId}`;
+export const editSingleJobUrl = (jobId: string) => `${Routes.editJob}/${jobId}`;

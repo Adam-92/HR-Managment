@@ -1,78 +1,43 @@
 import { useParams, Link } from 'react-router-dom';
-import { useQuery } from '@tanstack/react-query';
-import { Button, Box, TextField } from '@mui/material';
+import { Button, CircularProgress, Alert } from '@mui/material';
 
-import { getEditJobUrl, Routes } from 'routing/Routes';
-import { getJob, QUERY_KEY_GET_JOB } from 'api/getJob/getJob';
-import { formatDate } from 'utils/formatDate';
+import { useJob } from 'api/job/getJob/useJob';
+import { editSingleJobUrl, Routes } from 'routing/Routes';
+import { parseError } from 'errors/parseError';
 import { Header } from 'components/Header/Header';
-import { DataStatusHandler } from 'components/DataStatusHandler/DataStatusHandler';
+
+import { JobReadOnlyForm } from './JobReadOnlyForm/JobReadOnlyForm';
 
 export const Job = () => {
   const { id } = useParams();
 
   if (!id) throw Error('No id in params');
 
-  const results = useQuery([QUERY_KEY_GET_JOB], () => getJob(id));
+  const { isLoading, isError, error, data } = useJob(id);
+
+  if (isLoading) {
+    return <CircularProgress />;
+  }
+
+  if (isError) {
+    return <Alert severity="warning">{parseError(error)}</Alert>;
+  }
 
   return (
-    <DataStatusHandler {...results}>
-      {(data) => (
-        <>
-          <Header title={data.title} />
-          <Box
-            component="form"
-            sx={{
-              '& > :not(style)': { m: 1, width: '25ch' },
-            }}
-            noValidate
-            autoComplete="off"
-          >
-            <TextField
-              disabled
-              id={data.id}
-              label="id"
-              variant="standard"
-              value={data.id}
-            />
-            <TextField
-              id={data.title}
-              label="title"
-              variant="standard"
-              value={data.title}
-            />
-            <TextField
-              id={data.companyName}
-              label="companyName"
-              variant="standard"
-              value={data.companyName}
-            />
-            <TextField
-              id={formatDate(data.createdAt)}
-              label="createdAt"
-              variant="standard"
-              value={formatDate(data.createdAt)}
-            />
-            <TextField
-              id="standard-basic"
-              label="longDescription"
-              variant="standard"
-              value={data.longDescription}
-            />
-          </Box>
-          <Button
-            component={Link}
-            to={getEditJobUrl(id)}
-            variant="contained"
-            color="warning"
-          >
-            Edit
-          </Button>
-          <Button component={Link} to={Routes.jobs} variant="contained">
-            Back To List
-          </Button>
-        </>
-      )}
-    </DataStatusHandler>
+    <>
+      <Header title={data.title} />
+      <JobReadOnlyForm defaultValues={data} />
+      <Button
+        component={Link}
+        to={editSingleJobUrl(id)}
+        variant="contained"
+        color="warning"
+      >
+        Edit
+      </Button>
+      <Button component={Link} to={Routes.jobs} variant="contained">
+        Back To List
+      </Button>
+    </>
   );
 };

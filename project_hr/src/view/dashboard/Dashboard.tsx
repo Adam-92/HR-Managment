@@ -1,22 +1,24 @@
-import { Helmet } from 'react-helmet-async';
 import { Box } from '@mui/material';
+import { useQueries } from '@tanstack/react-query';
 
+import { getPositions, QUERY_KEY_POSITIONS } from 'api/getPositions';
+import { getCandidates, QUERY_KEY_CANDIDATES } from 'api/getCandidates';
 import { DataStatusHandler } from 'components/DataStatusHandler/DataStatusHandler';
 import { BasicCard } from 'components/BasicCard/BasicCard';
 import { WideCard } from 'components/WideCard/WideCard';
-
-import { usePositions } from './hooks/usePositions';
-import { useCandidates } from './hooks/useCadidates';
+import { Header } from 'components/Header/Header';
 
 export const Dashboard = () => {
-  const positions = usePositions();
-  const candidates = useCandidates();
+  const results = useQueries({
+    queries: [
+      { queryKey: [QUERY_KEY_POSITIONS], queryFn: getPositions },
+      { queryKey: [QUERY_KEY_CANDIDATES], queryFn: getCandidates },
+    ],
+  });
 
   return (
     <>
-      <Helmet>
-        <title>HR Dashbaord</title>
-      </Helmet>
+      <Header title="HR Dashbaord" />
       <Box
         sx={{
           display: 'flex',
@@ -26,18 +28,10 @@ export const Dashboard = () => {
           height: '60vh',
         }}
       >
-        <DataStatusHandler
-          isLoading={positions.isLoading}
-          error={positions.error}
-          data={positions.data}
-        >
+        <DataStatusHandler {...results[0]}>
           {(data) => <BasicCard text="Open positions" data={data} />}
         </DataStatusHandler>
-        <DataStatusHandler
-          isLoading={candidates.isLoading}
-          error={candidates.error}
-          data={candidates.data}
-        >
+        <DataStatusHandler {...results[1]}>
           {(data) => (
             <>
               <BasicCard text="Candidates" data={data} />

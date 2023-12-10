@@ -12,7 +12,9 @@ export const axios = _axios.create({
   baseURL: 'http://localhost:9595',
 });
 
-const requestSuccessInterceptor = (config: InternalAxiosRequestConfig) => {
+export const requestSuccessInterceptor = (
+  config: InternalAxiosRequestConfig,
+) => {
   const accessTokenObject = tokenStorage.getAccessToken();
   if (accessTokenObject) {
     // eslint-disable-next-line no-param-reassign

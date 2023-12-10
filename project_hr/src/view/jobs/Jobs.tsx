@@ -1,23 +1,20 @@
 /* eslint-disable @typescript-eslint/no-shadow */
-import { Helmet } from 'react-helmet-async';
-import { useQuery } from '@tanstack/react-query';
 import { Link } from 'react-router-dom';
-import { CircularProgress, Alert, Button } from '@mui/material';
+import { Alert, Button, CircularProgress } from '@mui/material';
 
+import { Routes } from 'routing/Routes';
 import { parseError } from 'errors/parseError';
-import { QUERY_KEY_GET_JOBS, getJobs } from 'api/getJobs/getJobs';
 import { Table } from 'components/Table/Table';
 import { TableProvider } from 'providers/table/TableProvider';
+import { Header } from 'components/Header/Header';
+import { useJobs } from 'api/jobs/getJobs/useJobs';
 
 import { columns } from './columns';
 import { JobRows } from './JobRows';
 import { JobColumns } from './JobColumns';
 
 export const Jobs = () => {
-  const { data, isLoading, isError, error } = useQuery(
-    [QUERY_KEY_GET_JOBS],
-    getJobs,
-  );
+  const { isLoading, isError, error, data } = useJobs();
 
   if (isLoading) {
     return <CircularProgress />;
@@ -33,15 +30,13 @@ export const Jobs = () => {
 
   return (
     <>
-      <Helmet>
-        <title>HR Jobs</title>
-      </Helmet>
+      <Header title="HR Jobs" />
       <TableProvider data={data}>
         {(data) => (
           <>
             <Button
               component={Link}
-              to="asdasd"
+              to={Routes.addJob}
               variant="contained"
               color="success"
             >

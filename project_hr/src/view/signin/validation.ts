@@ -1,6 +1,6 @@
 import * as yup from 'yup';
 
-import { validateString, validateEmail } from 'validation/patterns';
+import { validateEmail, validateString } from '../../validation/auth';
 
 export const schema = yup.object({
   email: validateEmail,

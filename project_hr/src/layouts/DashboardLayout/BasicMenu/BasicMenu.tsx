@@ -9,7 +9,7 @@ import {
 } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
-import { useUser } from 'api/getUser/hook/useUser';
+import { useUser } from 'api/getUser/useUser';
 import { formatFullName } from 'utils/formatFullName';
 import { formatInitials } from 'utils/formatiInitials';
 import { parseError } from 'errors/parseError';
@@ -32,7 +32,7 @@ export const BasicMenu = () => {
   if (user.isError) {
     return (
       <Box sx={{ width: '100%' }}>
-        <Alert>{parseError(user.isError)}</Alert>
+        <Alert>{parseError(user.error)}</Alert>
       </Box>
     );
   }

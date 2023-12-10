@@ -1,10 +1,25 @@
-export type GetUserDataResponse = {
+export type Job = {
   id: string;
   createdAt: string;
   updatedAt: string;
-  firstName: string;
-  lastName: string;
-  email: string;
+  title: string;
+  shortDescription: string;
+  longDescription: string;
+  logo: string;
+  companyName: string;
+  status: 'OPEN' | 'CLOSED';
+};
+
+export type JobResponse = {
+  data: Job;
+};
+
+export type JobPayload = {
+  title: string;
+  shortDescription: string;
+  longDescription: string;
+  logo: string;
+  companyName: string;
 };
 
 export type FormatUserName = (user: UserInfo) => string;

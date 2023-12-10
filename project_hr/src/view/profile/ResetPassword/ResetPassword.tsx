@@ -1,21 +1,22 @@
-import { Box, TextField, Typography, Button } from '@mui/material';
+import { useSnackbar } from 'notistack';
+import {
+  Box,
+  TextField,
+  Typography,
+  Button,
+  CircularProgress,
+} from '@mui/material';
 import { useMutation } from '@tanstack/react-query';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
+import type { ResetPasswordPayload } from 'api/resetPassword/resetPassword';
 import { parseError } from 'errors/parseError';
-import { useSnackbarHandler } from 'hooks/useSnackbarHandler';
+import { resetPassword } from 'api/resetPassword/resetPassword';
 
 import { useLogOut } from '../../../api/logOut/useLogOut';
-import { axios } from '../../../axios/axios';
 
 import { schema } from './validate';
-
-type ResetPasswordPayload = {
-  oldPassword: string;
-  newPassword: string;
-  repeatNewPassword: string;
-};
 
 export const ResetPassword = () => {
   const {
@@ -26,23 +27,24 @@ export const ResetPassword = () => {
     mode: 'onChange',
     resolver: yupResolver(schema),
   });
-  const handleOpenSnackbar = useSnackbarHandler();
-  const logOut = useLogOut();
-  const handleOnSuccess = () => {
-    handleOpenSnackbar('You have sucessfully changed the password', 'success');
-    setTimeout(logOut, 2000);
-  };
 
-  const { mutate, isError, error } = useMutation(
-    (payload: ResetPasswordPayload) => {
-      return axios.post('/auth/change-password', payload);
+  const logOut = useLogOut();
+  const { enqueueSnackbar } = useSnackbar();
+  const { mutate, isError, error, isLoading } = useMutation(resetPassword, {
+    onSuccess: () => {
+      enqueueSnackbar('Password has been reset', {
+        variant: 'success',
+        autoHideDuration: 2000,
+        onExited: logOut,
+      });
     },
-    {
-      onSuccess: handleOnSuccess,
-    },
-  );
+  });
 
   const onSubmit = (payload: ResetPasswordPayload) => mutate(payload);
+
+  if (isLoading) {
+    return <CircularProgress />;
+  }
 
   return (
     <Box>

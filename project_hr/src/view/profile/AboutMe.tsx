@@ -1,20 +1,23 @@
-import { Alert, CircularProgress } from '@mui/material';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import Typography from '@mui/material/Typography';
+import {
+  CircularProgress,
+  Card,
+  CardContent,
+  Typography,
+  Alert,
+} from '@mui/material';
 
-import { useUser } from 'api/getUser/hook/useUser';
+import { useUser } from 'api/getUser/useUser';
 import { parseError } from 'errors/parseError';
 
 export const AboutMe = () => {
-  const { data, isLoading, isError, error } = useUser();
+  const { isError, isLoading, error, data } = useUser();
 
   if (isLoading) {
     return <CircularProgress />;
   }
 
   if (isError) {
-    return <Alert severity="warning">{parseError(error)}</Alert>;
+    return <Alert severity="error">{parseError(error)}</Alert>;
   }
 
   return (

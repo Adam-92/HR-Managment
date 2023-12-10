@@ -1,19 +1,32 @@
-import { Button, Form, Nav, Spinner } from 'react-bootstrap';
-import { Helmet } from 'react-helmet-async';
+import {
+  Box,
+  TextField,
+  Button,
+  FormGroup,
+  Checkbox,
+  FormControlLabel,
+  Typography,
+} from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom';
+import { useSnackbar } from 'notistack';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useMutation } from '@tanstack/react-query';
 
 import { Routes } from 'routing/Routes';
 import { tokenStorage } from 'class/tokenStorageClass';
+import { logIn } from 'api/logIn/logIn';
 import { parseError } from 'errors/parseError';
 import type { Tokens } from 'axios/axios.types';
+import type { SignInPayload } from 'api/logIn/logIn';
+import { Header } from 'components/Header/Header';
+import { SubmitButton } from 'components/SubmitButton/SubmitButton';
 
-import { axios } from '../../axios/axios';
+import { schema } from './validation';
 
-import { schema } from './validate';
-import type { SignInPayload, SignInResponse } from './SignIn.types';
+export type SignInResponse = {
+  data: Tokens;
+};
 
 export const SignIn = () => {
   const {
@@ -29,82 +42,57 @@ export const SignIn = () => {
   const isRememberMe = !!watch('rememberMe');
 
   const navigate = useNavigate();
-
-  const { mutate, isLoading, isError, error } = useMutation(
-    (payload: SignInPayload) => {
-      return axios.post<Tokens>('auth/login', payload);
+  const { enqueueSnackbar } = useSnackbar();
+  const { mutate, isLoading } = useMutation(logIn, {
+    onSuccess: ({ data }: SignInResponse) => {
+      tokenStorage.saveAccessToken(data.accessToken, isRememberMe);
+      tokenStorage.saveRefreshToken(data.refreshToken, isRememberMe);
+      navigate(Routes.dashboard);
     },
-    {
-      onSuccess: ({ data }: SignInResponse) => {
-        tokenStorage.saveAccessToken(data.accessToken, isRememberMe);
-        tokenStorage.saveRefreshToken(data.refreshToken, isRememberMe);
-        navigate(Routes.dashboard);
-      },
+    onError: (error) => {
+      enqueueSnackbar(`${parseError(error)}`, { variant: 'error' });
     },
-  );
-
-  if (isLoading) {
-    return <Spinner animation="border" />;
-  }
+  });
 
   const onSubmit = async (payload: SignInPayload) => mutate(payload);
 
   return (
     <>
-      <Helmet>
-        <title>SingIn</title>
-      </Helmet>
-      <h1>SIGN IN</h1>
-      <Form onSubmit={handleSubmit(onSubmit)}>
-        <Form.Group className="mb-3" controlId="email">
-          <Form.Label>Email: </Form.Label>
-          <Form.Control
-            type="email"
-            placeholder="Enter your email:"
-            {...register('email')}
-            isInvalid={!!errors.email}
-          />
-          <Form.Control.Feedback type="invalid">
-            {errors.email?.message}
-          </Form.Control.Feedback>
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="password">
-          <Form.Label>Password: </Form.Label>
-          <Form.Control
-            type="password"
-            placeholder="Enter your password:"
-            {...register('password')}
-            isInvalid={!!errors.password}
-          />
-          <Form.Control.Feedback type="invalid">
-            {errors.password?.message}
-          </Form.Control.Feedback>
-        </Form.Group>
-
-        <Form.Group className="mb-3" controlId="rememberMe">
-          <Form.Check
-            type="checkbox"
-            label="Remember Me"
+      <Header title="SignIn" />
+      <Typography variant="h3">SIGN IN</Typography>
+      <Box component="form" onSubmit={handleSubmit(onSubmit)}>
+        <TextField
+          id="email"
+          label="Email"
+          {...register('email')}
+          error={!!errors.email}
+          helperText={errors.email?.message}
+        />
+        <TextField
+          id="password"
+          label="password"
+          type="password"
+          {...register('password')}
+          error={!!errors.password}
+          helperText={errors.password?.message}
+        />
+        <FormGroup>
+          <FormControlLabel
             {...register('rememberMe')}
+            control={<Checkbox />}
+            label="Remember Me"
           />
-        </Form.Group>
-        <Button variant="primary" type="submit">
-          {' '}
-          Sign In
+        </FormGroup>
+        <SubmitButton isLoading={isLoading} text="Sign In" />
+        <Typography variant="subtitle2">Dont have account?</Typography>
+        <Button
+          component={Link}
+          to={Routes.signup}
+          className="bg-warning-subtle"
+        >
+          Sign Up
         </Button>
-        {isError && (
-          <Form.Control.Feedback type="invalid" style={{ display: 'block' }}>
-            {parseError(error)}
-          </Form.Control.Feedback>
-        )}
-
-        <p>
-          Dont have account?
-          <Nav.Link as={Link} to={Routes.signup} className="bg-warning-subtle">
-            Sign Up
-          </Nav.Link>
-        </p>
-      </Form>
+      </Box>
     </>
   );
 };

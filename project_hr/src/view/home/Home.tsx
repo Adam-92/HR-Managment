@@ -10,13 +10,13 @@ import {
   getPublicJobs,
 } from 'api/getPublicJobs/getPublicJobs';
 import { jobsToListAdapter } from 'api/getPublicJobs/jobsToListAdapter';
+import { DataStatusHandler } from 'components/DataStatusHandler/DataStatusHandler';
 
 import { JobsList } from './JobsList/JobsList';
 
 export const Home = () => {
-  const { data } = useQuery([QUERY_KEY_GET_PUBLIC_JOBS], getPublicJobs);
+  const results = useQuery([QUERY_KEY_GET_PUBLIC_JOBS], getPublicJobs);
 
-  const adaptedData = jobsToListAdapter(data);
   return (
     <>
       <Card style={{ width: '18rem', padding: '2rem' }}>
@@ -42,7 +42,9 @@ export const Home = () => {
           </ListSubheader>
         }
       >
-        <JobsList list={adaptedData ?? []} />
+        <DataStatusHandler {...results}>
+          {(data) => <JobsList list={jobsToListAdapter(data) ?? []} />}
+        </DataStatusHandler>
       </List>
     </>
   );

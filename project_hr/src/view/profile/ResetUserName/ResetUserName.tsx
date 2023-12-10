@@ -1,22 +1,25 @@
-import { Box, TextField, Typography, Button } from '@mui/material';
+import { useSnackbar } from 'notistack';
+import {
+  Box,
+  TextField,
+  Typography,
+  Button,
+  CircularProgress,
+} from '@mui/material';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 import { QUERY_KEY_USER } from 'api/getUser/getUser';
 import { parseError } from 'errors/parseError';
-import { useSnackbarHandler } from 'hooks/useSnackbarHandler';
-
-import { axios } from '../../../axios/axios';
+import {
+  resetUsername,
+  type ResetUsernamePayload,
+} from 'api/resetUsername/resetUsername';
 
 import { schema } from './validate';
 
-type ResetUserNamePayload = {
-  firstName: string;
-  lastName: string;
-};
-
-export const ResetUserName = () => {
+export const ResetUsername = () => {
   const {
     register,
     handleSubmit,
@@ -26,22 +29,23 @@ export const ResetUserName = () => {
     resolver: yupResolver(schema),
   });
   const queryClient = useQueryClient();
-  const handleOpenSnackbar = useSnackbarHandler();
+  const { enqueueSnackbar } = useSnackbar();
   const handleOnSuccess = () => {
     queryClient.invalidateQueries([QUERY_KEY_USER]);
-    handleOpenSnackbar('You have sucessfully changed the name', 'success');
+    enqueueSnackbar('Username has been reset', {
+      variant: 'success',
+      autoHideDuration: 2000,
+    });
   };
 
-  const { mutate, isError, error } = useMutation(
-    (payload: ResetUserNamePayload) => {
-      return axios.put('users/me', payload);
-    },
-    {
-      onSuccess: handleOnSuccess,
-    },
-  );
-  /* Tutaj będzie wysłany, też repeatNewPassword  */
-  const onSubmit = (payload: ResetUserNamePayload) => mutate(payload);
+  const { mutate, isError, error, isLoading } = useMutation(resetUsername, {
+    onSuccess: handleOnSuccess,
+  });
+  const onSubmit = (payload: ResetUsernamePayload) => mutate(payload);
+
+  if (isLoading) {
+    return <CircularProgress />;
+  }
 
   return (
     <Box>

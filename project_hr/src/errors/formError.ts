@@ -4,4 +4,5 @@ export const formError = {
   email: 'Email address in not appropriate',
   repeatPassword: 'Passwords are not the same',
   whiteSpace: 'Whitespace is not allowed',
+  minMaxLengthLongText: 'Min length 10, Max length 100',
 } as const;

@@ -18,7 +18,7 @@ export const CheckboxRow = ({ id }: CheckboxRowProps) => {
     } else {
       checkboxRow.unmarkSingleRow(id);
     }
-    checkboxRow.unmarkAllRows();
+    checkboxRow.unmarkMasterCheckbox();
   }, [isInside, checkboxRow, id]);
 
   return (

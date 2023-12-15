@@ -4,6 +4,7 @@ import { useCheckboxRow } from 'components/Table/CheckboxRow/useCheckboxRow';
 import { usePagination } from 'components/Table/Pagination/usePagination';
 import { useSearch } from 'components/Table/Search/useSearch';
 import { useSort } from 'components/Table/Sort/useSort';
+import { useSelectActions } from 'components/Table/SelectActions/useSelectActions';
 
 import { TableContext } from './Context';
 
@@ -20,6 +21,7 @@ export const TableProvider = <T extends any[]>({
   const search = useSearch(data);
   const sort = useSort(data);
   const checkboxRow = useCheckboxRow(sort.sortedData);
+  const selectActions = useSelectActions(checkboxRow);
 
   const value = useMemo(
     () => ({
@@ -27,8 +29,9 @@ export const TableProvider = <T extends any[]>({
       search,
       sort,
       checkboxRow,
+      selectActions,
     }),
-    [pagination, search, sort, checkboxRow],
+    [selectActions, pagination, search, sort, checkboxRow],
   );
 
   return (

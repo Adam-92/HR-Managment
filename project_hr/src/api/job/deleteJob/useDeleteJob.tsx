@@ -1,3 +1,4 @@
+import { useCallback } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useConfirm } from 'material-ui-confirm';
 import { useSnackbar } from 'notistack';
@@ -27,15 +28,18 @@ export const useDeleteJob = () => {
     },
   });
 
-  const handleDeleteJob = async (data: Job) => {
-    await confirm({
-      description: `This will permanently delete:
-        ${data.companyName}
+  const handleDeleteJob = useCallback(
+    async (data: Job) => {
+      await confirm({
+        description: `This will permanently delete:
+        ${data.companyName}, 
         ${data.title}
       .`,
-    });
-    mutate(data);
-  };
+      });
+      mutate(data);
+    },
+    [confirm, mutate],
+  );
 
   return {
     handleDeleteJob,

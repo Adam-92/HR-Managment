@@ -10,7 +10,8 @@ export const usePagination = <T extends any[]>(data: T) => {
   const totalRows = data.length;
 
   const handleChangeRowsPerPage = useCallback((event: SelectChangeEvent) => {
-    setRowsPerPage(event.target.value as RowsPerPageType);
+    const page = event.target.value as RowsPerPageType;
+    setRowsPerPage(page);
   }, []);
 
   const numberOfPages = useCallback(() => {

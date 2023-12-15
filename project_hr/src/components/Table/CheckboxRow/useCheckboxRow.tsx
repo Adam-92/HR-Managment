@@ -1,7 +1,7 @@
 import { useState, useCallback } from 'react';
 
 export const useCheckboxRow = <T extends any[]>(data: T) => {
-  const [isMarkAllRows, setIsMarkAllRows] = useState(false);
+  const [isMarkMasterCheckbox, setIsMarkMasterCheckbox] = useState(false);
 
   const [markedRows, setMarkedRows] = useState<string[]>([]);
 
@@ -17,24 +17,28 @@ export const useCheckboxRow = <T extends any[]>(data: T) => {
     setMarkedRows((prev) => prev.filter((idElement) => id !== idElement));
   }, []);
 
-  const unmarkAllRows = useCallback(() => setIsMarkAllRows(false), []);
+  const unmarkMasterCheckbox = useCallback(
+    () => setIsMarkMasterCheckbox(false),
+    [],
+  );
+  const unmarkAllRows = useCallback(() => setMarkedRows([]), []);
 
   const onChangeAllRows = useCallback(() => {
     /* Indeterminate */
-    if (someRowsAreMarked && !isMarkAllRows) {
+    if (someRowsAreMarked && !isMarkMasterCheckbox) {
       setMarkedRows([]);
     }
     /* Unmark all checkboxes  */
-    if (isMarkAllRows && someRowsAreMarked) {
+    if (isMarkMasterCheckbox && someRowsAreMarked) {
       setMarkedRows([]);
-      setIsMarkAllRows(false);
+      setIsMarkMasterCheckbox(false);
     }
     /* Mark all checkboxes */
-    if (!isMarkAllRows && !someRowsAreMarked) {
+    if (!isMarkMasterCheckbox && !someRowsAreMarked) {
       setMarkedRows([...rowsIds]);
-      setIsMarkAllRows(true);
+      setIsMarkMasterCheckbox(true);
     }
-  }, [isMarkAllRows, rowsIds, someRowsAreMarked]);
+  }, [isMarkMasterCheckbox, rowsIds, someRowsAreMarked]);
 
   const rowIsInsideMarkedRows = useCallback(
     (id: string) => {
@@ -45,12 +49,14 @@ export const useCheckboxRow = <T extends any[]>(data: T) => {
   );
 
   return {
-    unmarkAllRows,
     onChangeAllRows,
     markSingleRow,
     unmarkSingleRow,
+    unmarkMasterCheckbox,
     rowIsInsideMarkedRows,
-    isMarkAllRows,
+    unmarkAllRows,
+    markedRows,
+    isMarkMasterCheckbox,
     someRowsAreMarked,
   };
 };

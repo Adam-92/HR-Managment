@@ -5,6 +5,7 @@ import type { ColumnsType } from 'view/jobs/columns';
 import { Pagination } from './Pagination/Pagination';
 import { SelectRowsPerPage } from './Pagination/SelectRowsPerPage';
 import { Search } from './Search/Search';
+import { SelectActions } from './SelectActions/SelectActions';
 
 export type TableProps<T> = {
   data: T;
@@ -21,6 +22,7 @@ export const Table = <T extends any[]>({
 }: TableProps<T>) => {
   return (
     <>
+      <SelectActions />
       <SelectRowsPerPage />
       <Search />
       <MuiTable>

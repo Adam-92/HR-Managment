@@ -23,9 +23,9 @@ export const JobColumns = ({ columns }: JobColumnsProps) => {
       <TableRow>
         <TableCell padding="checkbox">
           <Checkbox
-            checked={checkboxRow.isMarkAllRows}
+            checked={checkboxRow.isMarkMasterCheckbox}
             indeterminate={
-              checkboxRow.someRowsAreMarked && !checkboxRow.isMarkAllRows
+              checkboxRow.someRowsAreMarked && !checkboxRow.isMarkMasterCheckbox
             }
             onChange={checkboxRow.onChangeAllRows}
           />

@@ -3,8 +3,8 @@ import { useCallback } from 'react';
 import { useConfirm } from 'material-ui-confirm';
 import { useSnackbar } from 'notistack';
 
-import { QUERY_KEY_GET_JOBS } from 'api/jobs/getJobs/getJobs';
-import type { UseCheckboxRowProps } from 'components/Table/CheckboxRow/CheckboxRow.types';
+import { QUERY_KEY_GET_JOBS } from '../../jobs/getJobs/getJobs';
+import type { UseCheckboxRowProps } from '../../../components/Table/CheckboxRow/CheckboxRow.types';
 
 import { deleteJob } from './deleteJob';
 

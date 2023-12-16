@@ -17,9 +17,9 @@ export const TableProvider = <T extends any[]>({
   data,
   children,
 }: TableProviderProps<T>) => {
-  const pagination = usePagination(data);
-  const search = useSearch(data);
   const sort = useSort(data);
+  const search = useSearch(data);
+  const pagination = usePagination(data);
   const checkboxRow = useCheckboxRow(sort.sortedData);
   const selectActions = useSelectActions(checkboxRow);
 

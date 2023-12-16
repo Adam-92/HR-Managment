@@ -2,6 +2,7 @@ import { TableBody, TableRow, TableCell, ListItemIcon } from '@mui/material';
 import { EditNote, Delete } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 
+import type { Job } from 'types/types';
 import { useDeleteJob } from 'api/job/deleteJob/useDeleteJob';
 import { CheckboxRow } from 'components/Table/CheckboxRow/CheckboxRow';
 import type { GetJobsReponse } from 'api/jobs/getJobs/getJobs';
@@ -16,15 +17,14 @@ export const JobRows = ({ data }: JobRowsProps) => {
   const { search, pagination } = useTable();
   const { handleDeleteJob } = useDeleteJob();
 
-  const searchedData = search.searchData();
-  const { startIndex, endIndex } = pagination.cutSelectedRangeOfData();
+  const renderData = search.value ? search.debouncedData : data;
 
-  const renderData = searchedData ?? data;
+  const { startIndex, endIndex } = pagination.cutSelectedRangeOfData();
 
   return (
     <TableBody>
       {renderData
-        .map((job) => {
+        .map((job: Job) => {
           return (
             <TableRow key={job.id}>
               <CheckboxRow id={job.id} />

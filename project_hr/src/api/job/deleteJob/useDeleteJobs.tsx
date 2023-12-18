@@ -4,38 +4,28 @@ import { useConfirm } from 'material-ui-confirm';
 import { useSnackbar } from 'notistack';
 
 import { QUERY_KEY_GET_JOBS } from '../../jobs/getJobs/getJobs';
-import type { UseCheckboxRowProps } from '../../../components/Table/CheckboxRow/CheckboxRow.types';
 
 import { deleteJob } from './deleteJob';
 
-export const useDeleteJobs = (checkboxRow: UseCheckboxRowProps) => {
+export const useDeleteJobs = (JobIds: string[]) => {
   const queryClient = useQueryClient();
   const mutation = useMutation(deleteJob);
   const confirm = useConfirm();
   const { enqueueSnackbar } = useSnackbar();
-  const { markedRows, unmarkAllRows } = checkboxRow;
 
   const handleDeleteJobs = useCallback(async () => {
     await confirm({
-      description: `This will permanently delete items: ${markedRows.length}`,
+      description: `This will permanently delete items: ${JobIds.length}`,
     });
 
-    const jobsWithMutations = markedRows.map((jobId) =>
+    const jobsWithMutations = JobIds.map((jobId) =>
       mutation.mutateAsync(jobId),
     );
 
     await Promise.all(jobsWithMutations);
     enqueueSnackbar(`Jobs have been deleted`, { variant: 'success' });
-    unmarkAllRows();
     queryClient.invalidateQueries([QUERY_KEY_GET_JOBS]);
-  }, [
-    markedRows,
-    mutation,
-    queryClient,
-    confirm,
-    unmarkAllRows,
-    enqueueSnackbar,
-  ]);
+  }, [JobIds, mutation, queryClient, confirm, enqueueSnackbar]);
 
   return { handleDeleteJobs };
 };

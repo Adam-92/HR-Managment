@@ -3,11 +3,9 @@ import type { SelectChangeEvent } from '@mui/material';
 
 import type { RowsPerPageType } from './Pagination.types';
 
-export const usePagination = <T extends any[]>(data: T) => {
+export const usePagination = (totalRows: number) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState<RowsPerPageType>('10');
-
-  const totalRows = data.length;
 
   const handleChangeRowsPerPage = useCallback((event: SelectChangeEvent) => {
     const page = event.target.value as RowsPerPageType;
@@ -26,18 +24,21 @@ export const usePagination = <T extends any[]>(data: T) => {
     [],
   );
 
-  const cutSelectedRangeOfData = useCallback(() => {
-    const startIndex = (currentPage - 1) * parseInt(rowsPerPage, 10);
-    const endIndex = startIndex + parseInt(rowsPerPage, 10);
-    return { startIndex, endIndex };
-  }, [currentPage, rowsPerPage]);
+  const getPaginatedData = useCallback(
+    (data: unknown[]) => {
+      const startIndex = (currentPage - 1) * parseInt(rowsPerPage, 10);
+      const endIndex = startIndex + parseInt(rowsPerPage, 10);
+      return data.slice(startIndex, endIndex);
+    },
+    [currentPage, rowsPerPage],
+  );
 
   return {
     currentPage,
     handleChange,
     numberOfPages,
     handleChangeRowsPerPage,
-    cutSelectedRangeOfData,
+    getPaginatedData,
     rowsPerPage,
   };
 };

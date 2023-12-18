@@ -17,11 +17,21 @@ export const TableProvider = <T extends any[]>({
   data,
   children,
 }: TableProviderProps<T>) => {
-  const sort = useSort(data);
-  const search = useSearch(data);
-  const pagination = usePagination(data);
-  const checkboxRow = useCheckboxRow(sort.sortedData);
+  const rowIds = data.map((row) => row.id);
+
+  const sort = useSort();
+  const sortedData = sort.getSortedData(data);
+
+  const search = useSearch(sortedData);
+  const searchedData = search.searchedResults;
+
+  const pagination = usePagination(searchedData.length);
+  const paginatedData = pagination.getPaginatedData(searchedData);
+
+  const checkboxRow = useCheckboxRow(rowIds);
   const selectActions = useSelectActions(checkboxRow);
+
+  const processedData = paginatedData as T;
 
   const value = useMemo(
     () => ({
@@ -36,7 +46,7 @@ export const TableProvider = <T extends any[]>({
 
   return (
     <TableContext.Provider value={value}>
-      {children(sort.sortedData)}
+      {children(processedData)}
     </TableContext.Provider>
   );
 };

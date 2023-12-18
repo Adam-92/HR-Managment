@@ -8,9 +8,6 @@ export type UsePaginationProps = {
   handleChange: (event: ChangeEvent<unknown>, value: number) => void;
   numberOfPages: () => number;
   handleChangeRowsPerPage: (event: SelectChangeEvent) => void;
-  cutSelectedRangeOfData: () => {
-    startIndex: number;
-    endIndex: number;
-  };
+  getPaginatedData: (data: unknown[]) => unknown[];
   rowsPerPage: RowsPerPageType;
 };

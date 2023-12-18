@@ -9,7 +9,9 @@ import type { SelectActionsValue } from './SelectActions.types';
 
 export const useSelectActions = (checkboxRow: UseCheckboxRowProps) => {
   const [value, setValue] = useState<SelectActionsValue>('Actions');
-  const { handleDeleteJobs } = useDeleteJobs(checkboxRow);
+  const { markedRows, unmarkAllRows } = checkboxRow;
+
+  const { handleDeleteJobs } = useDeleteJobs(markedRows);
 
   const handleChange = useCallback(
     (event: SelectChangeEvent) => {
@@ -17,9 +19,10 @@ export const useSelectActions = (checkboxRow: UseCheckboxRowProps) => {
 
       if (item === 'Delete') {
         handleDeleteJobs();
+        unmarkAllRows();
       }
     },
-    [handleDeleteJobs],
+    [handleDeleteJobs, unmarkAllRows],
   );
 
   return { value, handleChange };

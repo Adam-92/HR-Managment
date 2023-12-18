@@ -3,7 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 
 import type { SortQuery } from './sort.types';
 
-export const useSort = <T extends any[]>(data: T) => {
+export const useSort = () => {
   const [searchParams] = useSearchParams();
   const [sortParam, desc] = searchParams.get('sort')?.split(':') ?? [];
 
@@ -18,22 +18,25 @@ export const useSort = <T extends any[]>(data: T) => {
     return sortQuery;
   };
 
-  const sortedData = data.sort((a, b) => {
-    if (sortParam) {
-      const orderA = a[sortParam].toLowerCase();
-      const orderB = b[sortParam].toLowerCase();
+  const getSortedData = (data: any[]) => {
+    const sortedData = [...data].sort((a, b) => {
+      if (sortParam) {
+        const orderA = a[sortParam].toLowerCase();
+        const orderB = b[sortParam].toLowerCase();
 
-      if (desc) {
-        return orderA > orderB ? -1 : 1;
+        if (desc) {
+          return orderA > orderB ? -1 : 1;
+        }
+        return orderA > orderB ? 1 : -1;
       }
-      return orderA > orderB ? 1 : -1;
-    }
 
-    return 0;
-  });
+      return 0;
+    });
+    return sortedData;
+  };
 
   return {
-    sortedData,
+    getSortedData,
     getSortQueryParam,
   };
 };

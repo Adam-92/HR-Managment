@@ -1,13 +1,11 @@
 import { useState, useCallback } from 'react';
 
-export const useCheckboxRow = <T extends any[]>(data: T) => {
+export const useCheckboxRow = (rowIds: string[]) => {
   const [isMarkMasterCheckbox, setIsMarkMasterCheckbox] = useState(false);
 
   const [markedRows, setMarkedRows] = useState<string[]>([]);
 
   const someRowsAreMarked = markedRows.length > 0;
-
-  const rowsIds = data.map((row) => row.id);
 
   const markSingleRow = useCallback((id: string) => {
     setMarkedRows((prev) => [...prev, id]);
@@ -35,10 +33,10 @@ export const useCheckboxRow = <T extends any[]>(data: T) => {
     }
     /* Mark all checkboxes */
     if (!isMarkMasterCheckbox && !someRowsAreMarked) {
-      setMarkedRows([...rowsIds]);
+      setMarkedRows([...rowIds]);
       setIsMarkMasterCheckbox(true);
     }
-  }, [isMarkMasterCheckbox, rowsIds, someRowsAreMarked]);
+  }, [isMarkMasterCheckbox, rowIds, someRowsAreMarked]);
 
   const rowIsInsideMarkedRows = useCallback(
     (id: string) => {

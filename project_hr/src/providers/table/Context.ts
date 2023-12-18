@@ -8,10 +8,10 @@ import type { UseSelectActions } from 'components/Table/SelectActions/SelectActi
 import type { UsePaginationProps } from '../../components/Table/Pagination/Pagination.types';
 
 type TableContexValue = {
-  pagination: UsePaginationProps;
-  checkboxRow: UseCheckboxRowProps;
-  search: UseSearchProps;
   sort: UseSortProps;
+  pagination: UsePaginationProps;
+  search: UseSearchProps;
+  checkboxRow: UseCheckboxRowProps;
   selectActions: UseSelectActions;
 };
 

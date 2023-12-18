@@ -3,6 +3,6 @@ export type SortQuery = {
 };
 
 export type UseSortProps = {
-  sortedData: any[];
+  getSortedData: (data: any[]) => any[];
   getSortQueryParam: (sortBy: string) => SortQuery;
 };

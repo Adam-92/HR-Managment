@@ -4,5 +4,5 @@ export type UseSearchProps = {
   value: string;
   clearValue: () => void;
   handleChange: (e: ChangeEvent<HTMLInputElement>) => void;
-  searchedResults: unknown[];
+  debouncedSearch: (data: unknown[]) => void;
 };

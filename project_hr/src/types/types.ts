@@ -22,6 +22,33 @@ export type JobPayload = {
   companyName: string;
 };
 
+export type Candidate = {
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+  name: string;
+  position: string;
+  shortDescription: string;
+  longDescription: string;
+  logo: string;
+  companyName: string;
+  appliedToJobId: string;
+};
+
+export type CandidatePayload = {
+  name: string;
+  position: string;
+  shortDescription: string;
+  longDescription: string;
+  logo: string;
+  companyName: string;
+  appliedToJobId: string | null;
+};
+
+export type CandidateResponse = {
+  data: Candidate;
+};
+
 export type FormatUserName = (user: UserInfo) => string;
 
 type UserInfo = { firstName: string; lastName: string };

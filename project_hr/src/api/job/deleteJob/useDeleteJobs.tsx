@@ -3,7 +3,7 @@ import { useCallback } from 'react';
 import { useConfirm } from 'material-ui-confirm';
 import { useSnackbar } from 'notistack';
 
-import { QUERY_KEY_GET_JOBS } from '../../jobs/getJobs/getJobs';
+import { QUERY_KEY_GET_JOBS } from '../../jobs/getJobs';
 
 import { deleteJob } from './deleteJob';
 

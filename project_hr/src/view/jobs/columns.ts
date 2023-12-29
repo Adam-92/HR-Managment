@@ -9,4 +9,4 @@ export const columns = [
   'updatedAt',
 ] as const;
 
-export type ColumnsType = typeof columns;
+export type JobColumnsType = typeof columns;

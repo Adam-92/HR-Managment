@@ -4,32 +4,32 @@ import { useCheckboxRow } from 'components/Table/CheckboxRow/useCheckboxRow';
 import { usePagination } from 'components/Table/Pagination/usePagination';
 import { useSearch } from 'components/Table/Search/useSearch';
 import { useSort } from 'components/Table/Sort/useSort';
-import { useSelectActions } from 'components/Table/SelectActions/useSelectActions';
 
 import { TableContext } from './Context';
 
 type TableProviderProps<T> = {
   data: T;
+  columns: readonly string[];
   children: (data: T) => JSX.Element;
 };
 
 export const TableProvider = <T extends any[]>({
   data,
   children,
+  columns,
 }: TableProviderProps<T>) => {
   const rowIds = data.map((row) => row.id);
 
   const sort = useSort();
   const sortedData = sort.getSortedData(data);
 
-  const search = useSearch(sortedData);
-  const searchedData = search.searchedResults;
+  const search = useSearch([...columns]);
+  const searchedData = search.debouncedSearch(sortedData);
 
-  const pagination = usePagination(searchedData.length);
-  const paginatedData = pagination.getPaginatedData(searchedData);
+  const pagination = usePagination(searchedData ? searchedData.length : 0);
+  const paginatedData = pagination.getPaginatedData(searchedData || data);
 
   const checkboxRow = useCheckboxRow(rowIds);
-  const selectActions = useSelectActions(checkboxRow);
 
   const processedData = paginatedData as T;
 
@@ -39,9 +39,8 @@ export const TableProvider = <T extends any[]>({
       search,
       sort,
       checkboxRow,
-      selectActions,
     }),
-    [selectActions, pagination, search, sort, checkboxRow],
+    [pagination, search, sort, checkboxRow],
   );
 
   return (

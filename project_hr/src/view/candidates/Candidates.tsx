@@ -7,15 +7,14 @@ import { parseError } from 'errors/parseError';
 import { Table } from 'components/Table/Table';
 import { TableProvider } from 'providers/table/TableProvider';
 import { Header } from 'components/Header/Header';
-import { useJobs } from 'api/jobs/useJobs';
+import { useCandidates } from 'api/candidates/useCandidates';
 
 import { columns } from './columns';
-import { JobRows } from './JobRows';
-import { JobColumns } from './JobColumns';
+import { CandidatesRows } from './CandidatesRows';
+import { CandidateColumns } from './CandidateColumns';
 
-export const Jobs = () => {
-  const { isLoading, isError, error, data } = useJobs();
-
+export const Candidates = () => {
+  const { isLoading, isError, error, data } = useCandidates();
   if (isLoading) {
     return <CircularProgress />;
   }
@@ -30,13 +29,13 @@ export const Jobs = () => {
 
   return (
     <>
-      <Header title="HR Jobs" />
+      <Header title="Candidates" />
       <TableProvider data={data} columns={columns}>
         {(data) => (
           <>
             <Button
               component={Link}
-              to={Routes.addJob}
+              to={Routes.addCandidate}
               variant="contained"
               color="success"
             >
@@ -44,10 +43,10 @@ export const Jobs = () => {
             </Button>
             <Table
               data={data}
-              dataCategory="jobs"
+              dataCategory="candidates"
               columns={columns}
-              columnsRenderer={JobColumns}
-              rowsRenderer={JobRows}
+              columnsRenderer={CandidateColumns}
+              rowsRenderer={CandidatesRows}
             />
           </>
         )}

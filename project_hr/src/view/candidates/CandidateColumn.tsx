@@ -4,13 +4,13 @@ import { TableCell, TableSortLabel } from '@mui/material';
 import { useTable } from 'providers/table/useTable';
 import { seperateCamelCase } from 'utils/seperateCamelCase';
 
-import type { JobColumnsType } from './columns';
+import type { CandidateColumnsType } from './columns';
 
-type JobColumnProps = {
-  column: JobColumnsType[number];
+type CandidateColumnProps = {
+  column: CandidateColumnsType[number];
 };
 
-export const JobColumn = ({ column }: JobColumnProps) => {
+export const CandidateColumn = ({ column }: CandidateColumnProps) => {
   const { sort } = useTable();
 
   const sortQuery = sort.getSortQueryParam(column);

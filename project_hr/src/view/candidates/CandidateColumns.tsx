@@ -8,16 +8,15 @@ import {
 
 import { useTable } from 'providers/table/useTable';
 
-import { JobColumn } from './JobColumn';
-import type { JobColumnsType } from './columns';
+import type { CandidateColumnsType } from './columns';
+import { CandidateColumn } from './CandidateColumn';
 
-type JobColumnsProps = {
-  columns: JobColumnsType;
+export type CandidateColumnsProps = {
+  columns: CandidateColumnsType;
 };
 
-export const JobColumns = ({ columns }: JobColumnsProps) => {
+export const CandidateColumns = ({ columns }: CandidateColumnsProps) => {
   const { checkboxRow } = useTable();
-
   return (
     <TableHead>
       <TableRow>
@@ -31,7 +30,7 @@ export const JobColumns = ({ columns }: JobColumnsProps) => {
           />
         </TableCell>
         {columns.map((column) => {
-          return <JobColumn column={column} key={column} />;
+          return <CandidateColumn column={column} key={column} />;
         })}
         <TableCell>
           <TableSortLabel>Actions</TableSortLabel>

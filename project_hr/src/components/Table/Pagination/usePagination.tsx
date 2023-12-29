@@ -1,7 +1,7 @@
 import { useState, useCallback, type ChangeEvent } from 'react';
 import type { SelectChangeEvent } from '@mui/material';
 
-import type { RowsPerPageType } from './Pagination.types';
+import type { RowsPerPageType } from './rowsPerPage';
 
 export const usePagination = (totalRows: number) => {
   const [currentPage, setCurrentPage] = useState(1);

@@ -12,19 +12,17 @@ import type { Job } from 'types/types';
 import { useTable } from 'providers/table/useTable';
 import { useDeleteJob } from 'api/job/deleteJob/useDeleteJob';
 import { CheckboxRow } from 'components/Table/CheckboxRow/CheckboxRow';
-import type { GetJobsReponse } from 'api/jobs/getJobs/getJobs';
 import { formatDate } from 'utils/formatDate';
 
 type JobRowsProps = {
-  data: GetJobsReponse;
+  data: Job[];
 };
 
 export const JobRows = ({ data }: JobRowsProps) => {
   const { search } = useTable();
   const { handleDeleteJob } = useDeleteJob();
 
-  const notFoundSearchedData =
-    search.value && search.searchedResults.length === 0;
+  const notFoundSearchedData = search.value && data.length === 0;
 
   if (notFoundSearchedData) {
     return (

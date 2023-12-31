@@ -24,10 +24,10 @@ export const TableProvider = <T extends any[]>({
   const sortedData = sort.getSortedData(data);
 
   const search = useSearch([...columns]);
-  const searchedData = search.debouncedSearch(sortedData);
+  const searchedData = search.getSearchedData(sortedData);
 
-  const pagination = usePagination(searchedData ? searchedData.length : 0);
-  const paginatedData = pagination.getPaginatedData(searchedData || data);
+  const pagination = usePagination(searchedData.length);
+  const paginatedData = pagination.getPaginatedData(searchedData);
 
   const checkboxRow = useCheckboxRow(rowIds);
 

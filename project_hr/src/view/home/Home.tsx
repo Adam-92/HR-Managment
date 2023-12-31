@@ -1,6 +1,4 @@
-import { Card } from 'react-bootstrap';
-import { List, ListSubheader } from '@mui/material';
-import Nav from 'react-bootstrap/Nav';
+import { List, ListSubheader, Button } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 
@@ -19,19 +17,29 @@ export const Home = () => {
 
   return (
     <>
-      <Card style={{ width: '18rem', padding: '2rem' }}>
-        <Card.Title>HR SCHOOL</Card.Title>
-        <Card.Text>
+      <div style={{ width: '18rem', padding: '2rem' }}>
+        <p>HR SCHOOL</p>
+        <p>
           Some quick example text to build on the card title and make up the
           bulk of the card content.
-        </Card.Text>
-        <Nav.Link as={Link} to={Routes.signin}>
+        </p>
+        <Button
+          component={Link}
+          variant="contained"
+          color="secondary"
+          to={Routes.signin}
+        >
           <h2 className="bg-warning-subtle">Sign In</h2>
-        </Nav.Link>
-        <Nav.Link as={Link} to={Routes.signup} className="my-3">
+        </Button>
+        <Button
+          component={Link}
+          variant="contained"
+          color="secondary"
+          to={Routes.signup}
+        >
           <h2 className="bg-info-subtle"> Sign Up</h2>
-        </Nav.Link>
-      </Card>
+        </Button>
+      </div>
       <List
         sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
         component="nav"

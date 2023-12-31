@@ -1,39 +1,27 @@
-import {
-  useState,
-  useCallback,
-  useMemo,
-  type ChangeEvent,
-  useEffect,
-} from 'react';
-import _debounce from 'lodash/debounce';
+import { useState, useCallback, type ChangeEvent } from 'react';
 import Fuse from 'fuse.js';
+
+import { useDebounce } from './useDebounce';
 
 export const useSearch = (columns: string[]) => {
   const [value, setValue] = useState('');
+  const debouncedValue = useDebounce(value);
 
   const handleChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value as string;
     setValue(newValue);
   }, []);
 
-  const searchData = useCallback(
+  const getSearchedData = useCallback(
     (data: unknown[]) => {
-      if (!value) return data;
+      if (!debouncedValue) return data;
       const fuse = new Fuse(data, {
         keys: columns,
         threshold: 0.2,
       });
-      return fuse.search(value).map(({ item }) => {
-        console.log('🚀  item:', item);
-        return item;
-      });
+      return fuse.search(debouncedValue).map(({ item }) => item);
     },
-    [value, columns],
-  );
-
-  const debouncedSearch = useMemo(
-    () => _debounce((data: unknown[]) => searchData(data), 3000),
-    [searchData],
+    [debouncedValue, columns],
   );
 
   const clearValue = useCallback(() => setValue(''), []);
@@ -42,6 +30,6 @@ export const useSearch = (columns: string[]) => {
     value,
     clearValue,
     handleChange,
-    debouncedSearch,
+    getSearchedData,
   };
 };

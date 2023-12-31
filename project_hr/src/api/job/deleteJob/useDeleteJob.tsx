@@ -4,7 +4,7 @@ import { useConfirm } from 'material-ui-confirm';
 import { useSnackbar } from 'notistack';
 
 import type { Job } from 'types/types';
-import { QUERY_KEY_GET_JOBS } from 'api/jobs/getJobs/getJobs';
+import { QUERY_KEY_GET_JOBS } from 'api/jobs/getJobs';
 import { parseError } from 'errors/parseError';
 
 import { deleteJob } from './deleteJob';

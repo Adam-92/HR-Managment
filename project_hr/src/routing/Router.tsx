@@ -17,6 +17,7 @@ import { Candidates } from 'view/candidates/Candidates';
 import { Candidate } from 'view/candidate/Candidate';
 import { EditCandidate } from 'view/editCandidate/EditCandidate';
 import { AddCandidate } from 'view/addCandidate/AddCandidate';
+import { Blacklist } from 'view/blacklist/Blacklist';
 
 import {
   getSingleJobUrl,
@@ -92,6 +93,10 @@ export const router = createBrowserRouter([
             element: <EditCandidate />,
           },
           { path: Routes.addCandidate, element: <AddCandidate /> },
+          {
+            path: Routes.blacklist,
+            element: <Blacklist />,
+          },
         ],
       },
     ],

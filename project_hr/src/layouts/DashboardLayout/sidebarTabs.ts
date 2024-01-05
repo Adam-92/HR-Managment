@@ -17,4 +17,8 @@ export const sidebarTabs = [
     name: 'Candidates',
     link: Routes.candidates,
   },
-];
+  {
+    name: 'Blacklist',
+    link: Routes.blacklist,
+  },
+] as const;

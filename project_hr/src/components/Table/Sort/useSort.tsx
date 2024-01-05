@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-shadow */
 import { useSearchParams } from 'react-router-dom';
 
 import type { SortQuery } from './sort.types';

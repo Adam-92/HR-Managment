@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-shadow */
 import { useSearchParams } from 'react-router-dom';
 
 import type { SortQuery } from './sort.types';
@@ -6,7 +5,6 @@ import type { SortQuery } from './sort.types';
 export const useSort = () => {
   const [searchParams] = useSearchParams();
   const [sortParam, desc] = searchParams.get('sort')?.split(':') ?? [];
-
   const getSortQueryParam = (sortBy: string) => {
     const sortQuery: SortQuery = {};
 

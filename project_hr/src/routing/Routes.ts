@@ -11,6 +11,7 @@ export const Routes = {
   editCandidate: '/candidates/edit',
   calendar: '/calendar',
   profile: '/profile',
+  blacklist: '/blacklist',
 } as const;
 
 export const getSingleJobUrl = (jobId: string) => `${Routes.jobs}/${jobId}`;

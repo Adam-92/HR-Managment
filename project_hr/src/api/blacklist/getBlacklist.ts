@@ -1,6 +1,6 @@
 import { axios } from '../../axios/axios';
 
-type BlacklistData = {
+export type BlacklistData = {
   id: string;
   createdAt: string;
   updatedAt: string;
@@ -14,15 +14,15 @@ export type Blacklist = {
 };
 
 export type ParamBlacklist = {
-  sortBy: 'name' | 'reason';
-  order: 'asc' | 'desc';
-  take: number;
-  skip: number;
+  sortBy: string;
+  order: string;
+  take: string;
+  skip: string;
 };
 
-export const defaultSearchParams: ParamBlacklist = {
-  take: 10,
-  skip: 0,
+export const defaultSearchParams = {
+  take: '5',
+  skip: '0',
   sortBy: 'name',
   order: 'asc',
 };

@@ -1,6 +1,6 @@
 import { Box, TextField } from '@mui/material';
 
-import type { Candidate } from 'types/types';
+import type { Candidate } from '@types/types';
 import { formatDate } from 'utils/formatDate';
 
 type CandidateReadOnlyFormProps = {

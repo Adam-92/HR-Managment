@@ -1,6 +1,7 @@
-import { List, ListSubheader, Button } from '@mui/material';
+import { List, ListSubheader, Button, ListItemIcon } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
+import { Language } from '@mui/icons-material';
 
 import { Routes } from 'routing/Routes';
 import {
@@ -9,6 +10,7 @@ import {
 } from 'api/getPublicJobs/getPublicJobs';
 import { jobsToListAdapter } from 'api/getPublicJobs/jobsToListAdapter';
 import { DataStatusHandler } from 'components/DataStatusHandler/DataStatusHandler';
+import { LanguageMenu } from 'layouts/DashboardLayout/LangugaeMenu/LanguageMenu';
 
 import { JobsList } from './JobsList/JobsList';
 
@@ -23,6 +25,7 @@ export const Home = () => {
           Some quick example text to build on the card title and make up the
           bulk of the card content.
         </p>
+        <LanguageMenu />
         <Button
           component={Link}
           variant="contained"

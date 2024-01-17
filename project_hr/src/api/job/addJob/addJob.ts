@@ -1,4 +1,4 @@
-import type { Job, JobPayload } from 'types/types';
+import type { Job, JobPayload } from '@types/types';
 
 import { axios } from '../../../axios/axios';
 

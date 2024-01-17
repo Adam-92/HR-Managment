@@ -1,4 +1,4 @@
-import type { Job } from '../../../types/types';
+import type { Job } from '../../../@types/types';
 import { axios } from '../../../axios/axios';
 
 export type EditJob = {

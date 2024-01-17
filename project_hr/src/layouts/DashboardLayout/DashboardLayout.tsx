@@ -17,8 +17,9 @@ import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
 import { Outlet } from 'react-router-dom';
 
-import { BasicMenu } from './BasicMenu/BasicMenu';
+import { AvatarMenu } from './AvatarMenu/AvatarMenu';
 import { sidebarTabs } from './sidebarTabs';
+import { LanguageMenu } from './LangugaeMenu/LanguageMenu';
 
 const drawerWidth = 240;
 
@@ -71,7 +72,8 @@ export const DashboardLayout = () => {
           <Typography variant="h6" noWrap component="div">
             HR_Analytics
           </Typography>
-          <BasicMenu />
+          <AvatarMenu />
+          <LanguageMenu />
         </Toolbar>
       </AppBar>
       <Box

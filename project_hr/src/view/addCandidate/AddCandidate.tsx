@@ -9,7 +9,7 @@ import { Header } from 'components/Header/Header';
 import { useCandidates } from 'api/candidates/useCandidates';
 import { Routes } from 'routing/Routes';
 import { EditCandidateForm } from 'components/Forms/EditCandidateForm/EditCandidateForm';
-import type { CandidatePayload, CandidateResponse } from 'types/types';
+import type { CandidatePayload, CandidateResponse } from '@types/types';
 
 export const AddCandidate = () => {
   const navigate = useNavigate();

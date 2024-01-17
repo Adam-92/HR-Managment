@@ -8,7 +8,7 @@ import {
 import { EditNote, Delete } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 
-import type { Candidate } from 'types/types';
+import type { Candidate } from '@types/types';
 import { useTable } from 'providers/table/useTable';
 import { CheckboxRow } from 'components/Table/CheckboxRow/CheckboxRow';
 import { formatDate } from 'utils/formatDate';

@@ -7,7 +7,7 @@ import { getSingleJobUrl, Routes } from 'routing/Routes';
 import { Header } from 'components/Header/Header';
 import { JobForm } from 'components/JobForm/JobForm';
 import { useJob } from 'api/job/getJob/useJob';
-import type { JobPayload, JobResponse } from 'types/types';
+import type { JobPayload, JobResponse } from '@types/types';
 import { parseError } from 'errors/parseError';
 import { editJob } from 'api/job/editJob/editJob';
 

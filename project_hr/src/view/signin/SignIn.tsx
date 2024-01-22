@@ -12,6 +12,7 @@ import { useSnackbar } from 'notistack';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useMutation } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
 
 import { Routes } from 'routing/Routes';
 import { tokenStorage } from 'class/tokenStorageClass';
@@ -40,6 +41,7 @@ export const SignIn = () => {
   });
 
   const isRememberMe = !!watch('rememberMe');
+  const { t } = useTranslation();
 
   const navigate = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
@@ -58,19 +60,19 @@ export const SignIn = () => {
 
   return (
     <>
-      <Header title="SignIn" />
-      <Typography variant="h3">SIGN IN</Typography>
+      <Header title={t('home.signin')} />
+      <Typography variant="h3">{t('home.signin')}</Typography>
       <Box component="form" onSubmit={handleSubmit(onSubmit)}>
         <TextField
           id="email"
-          label="Email"
+          label={t('signin.email')}
           {...register('email')}
           error={!!errors.email}
           helperText={errors.email?.message}
         />
         <TextField
           id="password"
-          label="password"
+          label={t('signin.password')}
           type="password"
           {...register('password')}
           error={!!errors.password}
@@ -80,17 +82,17 @@ export const SignIn = () => {
           <FormControlLabel
             {...register('rememberMe')}
             control={<Checkbox />}
-            label="Remember Me"
+            label={t('signin.rememberMe')}
           />
         </FormGroup>
-        <SubmitButton isLoading={isLoading} text="Sign In" />
-        <Typography variant="subtitle2">Dont have account?</Typography>
+        <SubmitButton isLoading={isLoading} text={t('home.signin')} />
+        <Typography variant="subtitle2">{t('signin.dontHaveAcc')}</Typography>
         <Button
           component={Link}
           to={Routes.signup}
           className="bg-warning-subtle"
         >
-          Sign Up
+          {t('home.signup')}
         </Button>
       </Box>
     </>

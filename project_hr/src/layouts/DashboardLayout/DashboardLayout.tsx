@@ -16,15 +16,17 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
 import { Outlet } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
-import { BasicMenu } from './BasicMenu/BasicMenu';
+import { AvatarMenu } from './AvatarMenu/AvatarMenu';
 import { sidebarTabs } from './sidebarTabs';
+import { LanguageMenu } from './LangugaeMenu/LanguageMenu';
 
 const drawerWidth = 240;
 
 export const DashboardLayout = () => {
   const [mobileOpen, setMobileOpen] = React.useState(false);
-
+  const { t } = useTranslation();
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
@@ -40,7 +42,7 @@ export const DashboardLayout = () => {
               <ListItemIcon>
                 {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
               </ListItemIcon>
-              <ListItemText primary={tab.name} />
+              <ListItemText primary={t(`dashboard.tabs.${tab.name}`)} />
             </Link>
           </ListItem>
         ))}
@@ -71,7 +73,8 @@ export const DashboardLayout = () => {
           <Typography variant="h6" noWrap component="div">
             HR_Analytics
           </Typography>
-          <BasicMenu />
+          <AvatarMenu />
+          <LanguageMenu />
         </Toolbar>
       </AppBar>
       <Box

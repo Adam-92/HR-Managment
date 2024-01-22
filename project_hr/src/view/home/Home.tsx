@@ -1,6 +1,7 @@
 import { List, ListSubheader, Button } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
 
 import { Routes } from 'routing/Routes';
 import {
@@ -9,27 +10,26 @@ import {
 } from 'api/getPublicJobs/getPublicJobs';
 import { jobsToListAdapter } from 'api/getPublicJobs/jobsToListAdapter';
 import { DataStatusHandler } from 'components/DataStatusHandler/DataStatusHandler';
+import { LanguageMenu } from 'layouts/DashboardLayout/LangugaeMenu/LanguageMenu';
 
 import { JobsList } from './JobsList/JobsList';
 
 export const Home = () => {
   const results = useQuery([QUERY_KEY_GET_PUBLIC_JOBS], getPublicJobs);
+  const { t } = useTranslation();
 
   return (
     <>
       <div style={{ width: '18rem', padding: '2rem' }}>
-        <p>HR SCHOOL</p>
-        <p>
-          Some quick example text to build on the card title and make up the
-          bulk of the card content.
-        </p>
+        <p>{t('home.title')}</p>
+        <LanguageMenu />
         <Button
           component={Link}
           variant="contained"
           color="secondary"
           to={Routes.signin}
         >
-          <h2 className="bg-warning-subtle">Sign In</h2>
+          <h2 className="bg-warning-subtle">{t('home.signin')}</h2>
         </Button>
         <Button
           component={Link}
@@ -37,7 +37,7 @@ export const Home = () => {
           color="secondary"
           to={Routes.signup}
         >
-          <h2 className="bg-info-subtle"> Sign Up</h2>
+          <h2 className="bg-info-subtle"> {t('home.signup')}</h2>
         </Button>
       </div>
       <List
@@ -46,7 +46,7 @@ export const Home = () => {
         aria-labelledby="nested-list-subheader"
         subheader={
           <ListSubheader component="div" id="nested-list-subheader">
-            <h5>We are looking for specialists in those technologies:</h5>
+            <h5>{t('home.footer_text')}</h5>
           </ListSubheader>
         }
       >

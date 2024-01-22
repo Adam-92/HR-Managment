@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react';
 
-export const useBasicMenu = () => {
+export const useMenu = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = useCallback(

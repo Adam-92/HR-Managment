@@ -1,6 +1,7 @@
 import ReactDOM from 'react-dom/client';
 import { RouterProvider } from 'react-router-dom';
 
+import './i18n';
 import './index.css';
 import { router } from 'routing/Router';
 import { AppProviders } from 'providers/appProviders/AppProviders';

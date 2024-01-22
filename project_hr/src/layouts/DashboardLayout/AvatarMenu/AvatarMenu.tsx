@@ -1,29 +1,24 @@
 import {
   Button,
   Menu,
-  MenuItem,
   Avatar,
   Box,
   Alert,
   CircularProgress,
 } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
 
 import { useUser } from 'api/getUser/useUser';
-import { formatFullName } from 'utils/formatFullName';
 import { formatInitials } from 'utils/formatiInitials';
 import { parseError } from 'errors/parseError';
-import { Routes } from 'routing/Routes';
-import { useLogOut } from 'api/logOut/useLogOut';
 
-import { useBasicMenu } from './useBasicMenu';
+import { useMenu } from '../useMenu';
 
-export const BasicMenu = () => {
+import { MenuItems } from './MenuItems';
+
+export const AvatarMenu = () => {
   const user = useUser();
 
-  const { open, handleClick, handleClose, anchorEl } = useBasicMenu();
-  const navigate = useNavigate();
-  const logOut = useLogOut();
+  const { open, handleClick, handleClose, anchorEl } = useMenu();
 
   if (user.isLoading) {
     return <CircularProgress />;
@@ -48,7 +43,7 @@ export const BasicMenu = () => {
         sx={{ textTransform: 'lowercase' }}
       >
         <Avatar sx={{ bgcolor: "'warning.main'" }}>
-          {user && formatInitials(user.data)}
+          {formatInitials(user.data)}
         </Avatar>
       </Button>
       <Menu
@@ -60,22 +55,7 @@ export const BasicMenu = () => {
           'aria-labelledby': 'basic-button',
         }}
       >
-        <MenuItem>
-          <Avatar
-            sx={{
-              bgcolor: 'darksalmon',
-              width: 28,
-              height: 28,
-              mr: '5px',
-              textTransform: 'lowercase',
-            }}
-          >
-            {user && formatInitials(user.data)}
-          </Avatar>
-          {user && formatFullName(user.data)}
-        </MenuItem>
-        <MenuItem onClick={() => navigate(Routes.profile)}>Profile</MenuItem>
-        <MenuItem onClick={logOut}>Logout</MenuItem>
+        <MenuItems user={user} onClose={handleClose} />
       </Menu>
     </div>
   );

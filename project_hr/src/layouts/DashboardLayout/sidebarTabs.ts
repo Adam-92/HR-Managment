@@ -2,23 +2,23 @@ import { Routes } from 'routing/Routes';
 
 export const sidebarTabs = [
   {
-    name: 'Home',
+    name: 'home',
     link: Routes.dashboard,
   },
   {
-    name: 'Jobs',
+    name: 'jobs',
     link: Routes.jobs,
   },
   {
-    name: 'Calendar',
+    name: 'calendar',
     link: Routes.calendar,
   },
   {
-    name: 'Candidates',
+    name: 'candidates',
     link: Routes.candidates,
   },
   {
-    name: 'Blacklist',
+    name: 'blacklist',
     link: Routes.blacklist,
   },
 ] as const;

@@ -7,6 +7,7 @@ import { MenuItems } from './MenuItems';
 
 export const LanguageMenu = () => {
   const { open, handleClick, handleClose, anchorEl } = useMenu();
+
   return (
     <div>
       <Button
@@ -30,7 +31,7 @@ export const LanguageMenu = () => {
           'aria-labelledby': 'basic-button',
         }}
       >
-        <MenuItems />
+        <MenuItems onClose={handleClose} />
       </Menu>
     </div>
   );

@@ -1,0 +1,35 @@
+{
+  "home": {
+    "title": "Witamy w naszym Portalu. Poznaj ekscytujące możliwości i znajdź wymarzoną pracę :)",
+    "signin": "Zaloguj się",
+    "signup": "Zarejestruj się",
+    "footer_text": "Szukamy specjalistów w następujących technologiach:"
+  },
+  "signin": {
+    "email": "email",
+    "password": "hasło",
+    "rememberMe": "Zapamiętaj mnie",
+    "dontHaveAcc": "Nie masz konta?"
+  },
+  "signup": {
+    "firstName": "Imię",
+    "lastName": "Nazwisko",
+    "email": "Email",
+    "password": "Hasło",
+    "repeatPassword": "Powtórz hasło",
+    "alreadyHaveAcc": "Masz już konto? Przejdź tutaj:"
+  },
+  "dashboard": {
+    "tabs": {
+      "home": "Strona Główna",
+      "jobs": "Prace",
+      "calendar": "Kalendarz",
+      "candidates": "Kandydaci",
+      "blacklist": "Zablokowani Kandydaci"
+    },
+    "content": {
+      "openPositions": "Otwarte Pozycje",
+      "candidates": "Kandydaci"
+    }
+  }
+}

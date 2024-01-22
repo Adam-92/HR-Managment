@@ -3,7 +3,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useConfirm } from 'material-ui-confirm';
 import { useSnackbar } from 'notistack';
 
-import type { Job } from '@types/types';
+import type { Job } from 'types/types';
 import { QUERY_KEY_GET_JOBS } from 'api/jobs/getJobs';
 import { parseError } from 'errors/parseError';
 

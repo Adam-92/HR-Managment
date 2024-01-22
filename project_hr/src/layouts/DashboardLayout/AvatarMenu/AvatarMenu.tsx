@@ -55,7 +55,7 @@ export const AvatarMenu = () => {
           'aria-labelledby': 'basic-button',
         }}
       >
-        <MenuItems user={user} />
+        <MenuItems user={user} onClose={handleClose} />
       </Menu>
     </div>
   );

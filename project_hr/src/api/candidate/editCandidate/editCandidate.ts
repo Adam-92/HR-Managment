@@ -1,4 +1,4 @@
-import type { Candidate } from '../../../@types/types';
+import type { Candidate } from '../../../types/types';
 import { axios } from '../../../axios/axios';
 
 export type EditCandidate = {

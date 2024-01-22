@@ -21,6 +21,6 @@
     "incremental": true,
     "baseUrl": "src"
   },
-  "include": ["src", "react-app-env.d.ts"],
+  "include": ["src", "react-app-env.d.ts", "src/@types/i18next.d.ts"],
   "exclude": ["node_modules", "build"]
 }

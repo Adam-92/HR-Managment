@@ -10,7 +10,7 @@ import { useJobs } from 'api/jobs/useJobs';
 import { Routes } from 'routing/Routes';
 import { JobForm } from 'components/JobForm/JobForm';
 
-import type { JobPayload, JobResponse } from '../../@types/types';
+import type { JobPayload, JobResponse } from '../../types/types';
 
 export const AddJob = () => {
   const navigate = useNavigate();

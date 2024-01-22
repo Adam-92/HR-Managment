@@ -7,7 +7,7 @@ import { getSingleCandidateUrl, Routes } from 'routing/Routes';
 import { Header } from 'components/Header/Header';
 import { EditCandidateForm } from 'components/Forms/EditCandidateForm/EditCandidateForm';
 import { useCandidate } from 'api/candidate/getCandidate/useCandidate';
-import type { CandidatePayload, CandidateResponse } from '@types/types';
+import type { CandidatePayload, CandidateResponse } from 'types/types';
 import { parseError } from 'errors/parseError';
 import { editCandidate } from 'api/candidate/editCandidate/editCandidate';
 

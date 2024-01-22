@@ -16,6 +16,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
 import { Outlet } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 import { AvatarMenu } from './AvatarMenu/AvatarMenu';
 import { sidebarTabs } from './sidebarTabs';
@@ -25,7 +26,7 @@ const drawerWidth = 240;
 
 export const DashboardLayout = () => {
   const [mobileOpen, setMobileOpen] = React.useState(false);
-
+  const { t } = useTranslation();
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
@@ -41,7 +42,7 @@ export const DashboardLayout = () => {
               <ListItemIcon>
                 {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
               </ListItemIcon>
-              <ListItemText primary={tab.name} />
+              <ListItemText primary={t(`dashboard.tabs.${tab.name}`)} />
             </Link>
           </ListItem>
         ))}

@@ -1,10 +1,25 @@
 import { MenuItem } from '@mui/material';
 
-export const MenuItems = () => {
+import i18n from '../../../i18n';
+
+import { languages } from './languages';
+
+export const MenuItems = ({ onClose }: { onClose: () => void }) => {
   return (
     <>
-      <MenuItem onClick={() => {}}>PL</MenuItem>
-      <MenuItem onClick={() => {}}>ENG</MenuItem>
+      {languages.map((language) => {
+        return (
+          <MenuItem
+            key={language}
+            onClick={() => {
+              i18n.changeLanguage(language);
+              onClose();
+            }}
+          >
+            {language}
+          </MenuItem>
+        );
+      })}
     </>
   );
 };

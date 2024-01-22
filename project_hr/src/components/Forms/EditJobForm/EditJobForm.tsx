@@ -2,7 +2,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Box, TextField, Button } from '@mui/material';
 
-import type { JobPayload } from '@types/types';
+import type { JobPayload } from 'types/types';
 
 import { schema } from './validation';
 

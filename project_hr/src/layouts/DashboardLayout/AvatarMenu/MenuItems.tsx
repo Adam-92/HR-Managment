@@ -10,9 +10,10 @@ import type { GetUser } from 'api/getUser/getUser';
 
 type MenuItemsProps = {
   user: UseQueryResult<GetUser, unknown>;
+  onClose: () => void;
 };
 
-export const MenuItems = ({ user }: MenuItemsProps) => {
+export const MenuItems = ({ user, onClose }: MenuItemsProps) => {
   const navigate = useNavigate();
   const logout = useLogOut();
   return (
@@ -20,7 +21,7 @@ export const MenuItems = ({ user }: MenuItemsProps) => {
     <>
       {user.data && (
         <>
-          <MenuItem>
+          <MenuItem onClick={onClose}>
             <Avatar
               sx={{
                 bFFFFgcolor: 'darksalmon',
@@ -34,7 +35,14 @@ export const MenuItems = ({ user }: MenuItemsProps) => {
             </Avatar>
             {formatFullName(user.data)}
           </MenuItem>
-          <MenuItem onClick={() => navigate(Routes.profile)}>Profile</MenuItem>
+          <MenuItem
+            onClick={() => {
+              navigate(Routes.profile);
+              onClose();
+            }}
+          >
+            Profile
+          </MenuItem>
           <MenuItem onClick={logout}>Logout</MenuItem>
         </>
       )}

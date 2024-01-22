@@ -8,7 +8,7 @@ import {
 import { EditNote, Delete } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 
-import type { Job } from '@types/types';
+import type { Job } from 'types/types';
 import { useTable } from 'providers/table/useTable';
 import { useDeleteJob } from 'api/job/deleteJob/useDeleteJob';
 import { CheckboxRow } from 'components/Table/CheckboxRow/CheckboxRow';

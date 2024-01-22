@@ -4,6 +4,7 @@ import { Box, TextField, Button, Typography } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useMutation } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
 
 import { Routes } from 'routing/Routes';
 import { parseError } from 'errors/parseError';
@@ -17,7 +18,7 @@ import { schema } from './validation';
 export const SignUp = () => {
   const navigate = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
-
+  const { t } = useTranslation();
   const { mutate, isLoading } = useMutation(registerUser, {
     onSuccess: () => navigate(Routes.signin),
     onError: (error) => {
@@ -38,32 +39,32 @@ export const SignUp = () => {
 
   return (
     <>
-      <Header title="SignUp" />
+      <Header title={t('home.signup')} />
       <Box component="form" onSubmit={handleSubmit(onSubmit)}>
         <TextField
           id="firstName"
-          label="firstName"
+          label={t('signup.firstName')}
           {...register('firstName')}
           error={!!errors.firstName}
           helperText={errors.firstName?.message}
         />
         <TextField
           id="lastName"
-          label="lastName"
+          label={t('signup.lastName')}
           {...register('lastName')}
           error={!!errors.lastName}
           helperText={errors.lastName?.message}
         />
         <TextField
           id="email"
-          label="email"
+          label={t('signup.email')}
           {...register('email')}
           error={!!errors.email}
           helperText={errors.email?.message}
         />
         <TextField
           id="password"
-          label="password"
+          label={t('signup.password')}
           type="password"
           {...register('password')}
           error={!!errors.password}
@@ -71,20 +72,20 @@ export const SignUp = () => {
         />
         <TextField
           id="repeatPassword"
-          label="repeatPassword"
+          label={t('signup.repeatPassword')}
           type="password"
           {...register('repeatPassword')}
           error={!!errors.repeatPassword}
           helperText={errors.repeatPassword?.message}
         />
-        <SubmitButton isLoading={isLoading} text="Sign Up" />
-        <Typography>Already have an account? Then </Typography>
+        <SubmitButton isLoading={isLoading} text={t('home.signup')} />
+        <Typography>{t('signup.alreadyHaveAcc')} </Typography>
         <Button
           component={Link}
           to={Routes.signin}
           className="bg-warning-subtle"
         >
-          Sign In
+          {t('home.signin')}
         </Button>
       </Box>
     </>

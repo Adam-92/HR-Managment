@@ -6,13 +6,13 @@ type SubmitButtonProps = {
 };
 
 export const SubmitButton = ({ isLoading, text }: SubmitButtonProps) => {
-  if (isLoading) {
-    return <CircularProgress color="inherit" />;
-  }
-
   return (
-    <Button variant="contained" type="submit">
-      <Typography>{text}</Typography>
+    <Button variant="contained" color="secondary" type="submit">
+      {isLoading ? (
+        <CircularProgress color="inherit" />
+      ) : (
+        <Typography>{text}</Typography>
+      )}
     </Button>
   );
 };

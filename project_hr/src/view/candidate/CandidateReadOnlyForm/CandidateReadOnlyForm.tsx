@@ -53,12 +53,6 @@ export const CandidateReadOnlyForm = ({
       />
       <TextField
         disabled
-        id="appliedToJobId"
-        label="Applied For Job: "
-        defaultValue={defaultValues.appliedToJobId}
-      />
-      <TextField
-        disabled
         id="shortDescription"
         label="Short Descripion"
         defaultValue={defaultValues.shortDescription}
@@ -70,12 +64,6 @@ export const CandidateReadOnlyForm = ({
         defaultValue={defaultValues.longDescription}
         multiline
         rows={4}
-      />
-      <TextField
-        disabled
-        id="logo"
-        label="Logo"
-        defaultValue={defaultValues.logo}
       />
     </Box>
   );

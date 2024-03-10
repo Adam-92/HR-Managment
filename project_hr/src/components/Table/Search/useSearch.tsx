@@ -1,4 +1,5 @@
-import { useState, useCallback, type ChangeEvent } from 'react';
+import { useState, useCallback } from 'react';
+import type { ChangeEvent } from 'react';
 import Fuse from 'fuse.js';
 
 import { useDebounce } from './useDebounce';
@@ -24,11 +25,8 @@ export const useSearch = (columns: string[]) => {
     [debouncedValue, columns],
   );
 
-  const clearValue = useCallback(() => setValue(''), []);
-
   return {
     value,
-    clearValue,
     handleChange,
     getSearchedData,
   };

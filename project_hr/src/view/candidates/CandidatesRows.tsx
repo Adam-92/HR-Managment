@@ -4,6 +4,7 @@ import {
   TableCell,
   ListItemIcon,
   Alert,
+  Avatar,
 } from '@mui/material';
 import { EditNote, Delete } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
@@ -14,6 +15,7 @@ import { CheckboxRow } from 'components/Table/CheckboxRow/CheckboxRow';
 import { formatDate } from 'utils/formatDate';
 import { useDeleteCandidate } from 'api/candidate/deleteCandidate/useDeleteCandidate';
 import { getSingleCandidateUrl } from 'routing/Routes';
+import { formatOneFieldInitials } from 'utils/formatInitials';
 
 type CandidateRowsProps = {
   data: Candidate[];
@@ -25,7 +27,6 @@ export const CandidatesRows = ({ data }: CandidateRowsProps) => {
   const { handleDeleteCandidate } = useDeleteCandidate();
 
   const notFoundSearchedData = search.value && data.length === 0;
-
   if (notFoundSearchedData) {
     return (
       <TableBody>
@@ -45,14 +46,17 @@ export const CandidatesRows = ({ data }: CandidateRowsProps) => {
           <TableRow key={candidate.id}>
             <CheckboxRow id={candidate.id} />
             <TableCell>{candidate.name}</TableCell>
+            <TableCell>
+              <Avatar sx={{ bgcolor: "'warning.main'" }}>
+                {formatOneFieldInitials(candidate.name)}
+              </Avatar>
+            </TableCell>
             <TableCell>{candidate.position}</TableCell>
+            <TableCell>{candidate.companyName}</TableCell>
             <TableCell>{formatDate(candidate.createdAt)}</TableCell>
             <TableCell>{formatDate(candidate.updatedAt)}</TableCell>
             <TableCell>{candidate.shortDescription}</TableCell>
             <TableCell>{candidate.longDescription}</TableCell>
-            <TableCell>{candidate.logo}</TableCell>
-            <TableCell>{candidate.companyName}</TableCell>
-            <TableCell>{candidate.appliedToJobId}</TableCell>
             <TableCell>
               <Link to={getSingleCandidateUrl(candidate.id)}>
                 <ListItemIcon sx={{ cursor: 'pointer' }}>

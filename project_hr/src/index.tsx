@@ -1,8 +1,9 @@
 import ReactDOM from 'react-dom/client';
 import { RouterProvider } from 'react-router-dom';
-
 import './i18n';
 import './index.css';
+import { CssBaseline } from '@mui/material';
+
 import { router } from 'routing/Router';
 import { AppProviders } from 'providers/appProviders/AppProviders';
 
@@ -17,6 +18,7 @@ if (!rootElement) {
 const root = ReactDOM.createRoot(rootElement);
 root.render(
   <AppProviders>
+    <CssBaseline />
     <RouterProvider router={router} />
   </AppProviders>,
 );

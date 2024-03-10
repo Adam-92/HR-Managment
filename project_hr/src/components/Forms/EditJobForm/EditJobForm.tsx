@@ -67,14 +67,6 @@ export const EditJobForm = (props: EditJobFormProps) => {
         multiline
         rows={4}
       />
-      <TextField
-        id="logo"
-        label="Logo"
-        {...register('logo')}
-        error={!!errors.logo}
-        helperText={errors.logo?.message}
-      />
-
       <Button
         variant="contained"
         disabled={!isDirty}

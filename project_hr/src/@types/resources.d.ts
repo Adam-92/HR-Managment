@@ -18,20 +18,21 @@ export interface Resources {
       email: 'Email';
       password: 'Password';
       repeatPassword: 'Repeat Password';
-      alreadyHaveAcc: 'Already have an account? Then click here:';
+      alreadyHaveAcc: 'Already have an account? Then click here!';
     };
     dashboard: {
       tabs: {
         home: 'Home';
         jobs: 'Jobs';
-        calendar: 'Calendar';
+        meetings: 'Meetings';
         candidates: 'Candidates';
-        blacklist: 'Candidates Blacklist';
+        blacklist: 'Blacklist';
+        list: 'List';
       };
-      content: {
-        openPositions: 'Open Positions';
-        candidates: 'Candidates';
-      };
+    };
+    content: {
+      openPositions: 'Open Positions';
+      candidates: 'Candidates';
     };
   };
 }

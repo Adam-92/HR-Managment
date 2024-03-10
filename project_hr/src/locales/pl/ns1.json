@@ -17,19 +17,17 @@
     "email": "Email",
     "password": "Hasło",
     "repeatPassword": "Powtórz hasło",
-    "alreadyHaveAcc": "Masz już konto? Przejdź tutaj:"
+    "alreadyHaveAcc": "Masz już konto? Przejdź tutaj!"
   },
   "dashboard": {
     "tabs": {
       "home": "Strona Główna",
       "jobs": "Prace",
-      "calendar": "Kalendarz",
+      "meetings": "Spotkania",
       "candidates": "Kandydaci",
-      "blacklist": "Zablokowani Kandydaci"
-    },
-    "content": {
-      "openPositions": "Otwarte Pozycje",
-      "candidates": "Kandydaci"
+      "blacklist": "Zablokowani",
+      "list": "Lista"
     }
   }
 }
+

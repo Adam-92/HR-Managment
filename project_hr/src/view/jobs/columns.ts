@@ -1,7 +1,6 @@
 export const columns = [
   'companyName',
   'createdAt',
-  'logo',
   'longDescription',
   'shortDescription',
   'status',

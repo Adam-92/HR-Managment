@@ -57,12 +57,6 @@ export const JobReadOnlyForm = ({ defaultValues }: JobReadOnlyFormProps) => {
         multiline
         rows={4}
       />
-      <TextField
-        disabled
-        id="logo"
-        label="Logo"
-        defaultValue={defaultValues.logo}
-      />
     </Box>
   );
 };

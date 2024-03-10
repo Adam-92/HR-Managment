@@ -4,10 +4,13 @@ import {
   Select,
   MenuItem,
   FormHelperText,
+  Box,
 } from '@mui/material';
 
 import { useTable } from 'providers/table/useTable';
 import type { DataCategory } from 'components/Table/Table';
+
+import { boxSx } from '../style';
 
 import { useSelectActions } from './useSelectActions';
 import { actions } from './actions';
@@ -21,28 +24,29 @@ export const SelectActions = ({ dataCategory }: SelectActionsProps) => {
   const { value, handleChange } = useSelectActions(dataCategory, checkboxRow);
 
   return (
-    <FormControl
-      sx={{ m: 1, minWidth: 120 }}
-      disabled={!checkboxRow.someRowsAreMarked}
-    >
-      <InputLabel id="demo-simple-select-disabled-label">Select</InputLabel>
-      <Select
-        labelId="demo-simple-select-disabled-label"
-        id="demo-simple-select-disabled"
-        value={value}
-        label="Actions"
-        onChange={handleChange}
+    <Box sx={boxSx}>
+      <FormControl
+        sx={{ minWidth: 120 }}
+        disabled={!checkboxRow.someRowsAreMarked}
       >
-        F
-        {actions.map((action) => {
-          return (
-            <MenuItem value={action} key={action}>
-              {action}
-            </MenuItem>
-          );
-        })}
-      </Select>
-      <FormHelperText>Available if marked rows</FormHelperText>
-    </FormControl>
+        <InputLabel id="select-disabled-label">Select</InputLabel>
+        <Select
+          labelId="select-disabled-label"
+          id="select-disabled-label"
+          value={value}
+          label="Actions"
+          onChange={handleChange}
+        >
+          {actions.map((action) => {
+            return (
+              <MenuItem value={action} key={action}>
+                {action}
+              </MenuItem>
+            );
+          })}
+        </Select>
+        <FormHelperText>Available if marked rows</FormHelperText>
+      </FormControl>
+    </Box>
   );
 };

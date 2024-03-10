@@ -8,7 +8,7 @@ import {
 } from '@mui/material';
 
 import { useUser } from 'api/getUser/useUser';
-import { formatInitials } from 'utils/formatiInitials';
+import { formatUserInitials } from 'utils/formatInitials';
 import { parseError } from 'errors/parseError';
 
 import { useMenu } from '../useMenu';
@@ -33,7 +33,7 @@ export const AvatarMenu = () => {
   }
 
   return (
-    <div>
+    <Box sx={{ ml: 'auto' }}>
       <Button
         id="basic-button"
         aria-controls={open ? 'basic-menu' : undefined}
@@ -43,7 +43,7 @@ export const AvatarMenu = () => {
         sx={{ textTransform: 'lowercase' }}
       >
         <Avatar sx={{ bgcolor: "'warning.main'" }}>
-          {formatInitials(user.data)}
+          {formatUserInitials(user.data)}
         </Avatar>
       </Button>
       <Menu
@@ -57,6 +57,6 @@ export const AvatarMenu = () => {
       >
         <MenuItems user={user} onClose={handleClose} />
       </Menu>
-    </div>
+    </Box>
   );
 };

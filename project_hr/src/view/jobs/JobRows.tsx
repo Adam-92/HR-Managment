@@ -44,7 +44,6 @@ export const JobRows = ({ data }: JobRowsProps) => {
             <CheckboxRow id={job.id} />
             <TableCell>{job.companyName}</TableCell>
             <TableCell>{formatDate(job.createdAt)}</TableCell>
-            <TableCell>{job.logo}</TableCell>
             <TableCell>{job.longDescription}</TableCell>
             <TableCell>{job.shortDescription}</TableCell>
             <TableCell>{job.status}</TableCell>

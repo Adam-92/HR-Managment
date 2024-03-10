@@ -5,7 +5,7 @@ import type { UseQueryResult } from '@tanstack/react-query';
 import { Routes } from 'routing/Routes';
 import { useLogOut } from 'api/logOut/useLogOut';
 import { formatFullName } from 'utils/formatFullName';
-import { formatInitials } from 'utils/formatiInitials';
+import { formatUserInitials } from 'utils/formatInitials';
 import type { GetUser } from 'api/getUser/getUser';
 
 type MenuItemsProps = {
@@ -31,7 +31,7 @@ export const MenuItems = ({ user, onClose }: MenuItemsProps) => {
                 textTransform: 'lowercase',
               }}
             >
-              {formatInitials(user.data)}
+              {formatUserInitials(user.data)}
             </Avatar>
             {formatFullName(user.data)}
           </MenuItem>

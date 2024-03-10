@@ -74,20 +74,6 @@ export const EditCandidateForm = (props: EditCandidateFormProps) => {
         multiline
         rows={4}
       />
-      <TextField
-        id="logo"
-        label="Logo"
-        {...register('logo')}
-        error={!!errors.logo}
-        helperText={errors.logo?.message}
-      />
-      <TextField
-        id="appliedToJobId"
-        label="Apply For Job"
-        {...register('appliedToJobId')}
-        error={!!errors.appliedToJobId}
-        helperText={errors.appliedToJobId?.message}
-      />
       <Button
         variant="contained"
         disabled={!isDirty}

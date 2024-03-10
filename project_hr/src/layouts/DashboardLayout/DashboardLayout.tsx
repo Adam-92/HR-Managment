@@ -1,32 +1,27 @@
-import * as React from 'react';
+import { useState } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 import Divider from '@mui/material/Divider';
 import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
 import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import MailIcon from '@mui/icons-material/Mail';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import Link from '@mui/material/Link';
 import { Outlet } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
+import { ThemeProvider } from '@emotion/react';
 
 import { AvatarMenu } from './AvatarMenu/AvatarMenu';
-import { sidebarTabs } from './sidebarTabs';
+import { sidebarTabs } from './SidebarTabs/sidebarTabs';
 import { LanguageMenu } from './LangugaeMenu/LanguageMenu';
-
-const drawerWidth = 240;
+import { Tab } from './SidebarTabs/Tab/Tab';
+import { CollapseTab } from './SidebarTabs/CollapseTab/CollapseTab';
+import { theme } from './theme';
 
 export const DashboardLayout = () => {
-  const [mobileOpen, setMobileOpen] = React.useState(false);
-  const { t } = useTranslation();
+  const [mobileOpen, setMobileOpen] = useState(false);
+
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
@@ -36,94 +31,92 @@ export const DashboardLayout = () => {
       <Toolbar />
       <Divider />
       <List>
-        {sidebarTabs.map((tab, index) => (
-          <ListItem key={tab.name} disablePadding>
-            <Link href={tab.link}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={t(`dashboard.tabs.${tab.name}`)} />
-            </Link>
-          </ListItem>
-        ))}
+        {sidebarTabs.map((tab) =>
+          tab.link ? (
+            <Tab tab={tab} key={tab.name} />
+          ) : (
+            <CollapseTab tabs={tab.children} key={tab.name} />
+          ),
+        )}
       </List>
       <Divider />
     </div>
   );
 
   return (
-    <Box sx={{ display: 'flex' }}>
-      <CssBaseline />
-      <AppBar
-        position="fixed"
-        sx={{
-          width: { sm: `100%` },
-        }}
-      >
-        <Toolbar sx={{ justifyContent: 'space-between' }}>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            edge="start"
-            onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: 'none' } }}
+    <ThemeProvider theme={theme}>
+      <Box sx={{ display: 'flex' }}>
+        <CssBaseline />
+        <AppBar>
+          <Toolbar>
+            <IconButton aria-label="open drawer" onClick={handleDrawerToggle}>
+              <MenuIcon />
+            </IconButton>
+            <Typography variant="h6" noWrap component="div">
+              HR JOBS
+            </Typography>
+            <Box
+              sx={{
+                background: 'white',
+                width: '4.5rem',
+                height: '5vh',
+                marginLeft: '3.5rem',
+                borderRadius: '2rem',
+              }}
+            >
+              <LanguageMenu />
+            </Box>
+            <AvatarMenu />
+          </Toolbar>
+        </AppBar>
+        <Box
+          component="nav"
+          sx={{ width: { sm: 240 }, flexShrink: { sm: 0 }, zIndex: 1 }}
+          aria-label="mailbox folders"
+        >
+          <Drawer
+            variant="temporary"
+            open={mobileOpen}
+            onClose={handleDrawerToggle}
+            ModalProps={{
+              keepMounted: true,
+            }}
+            sx={{
+              display: { xs: 'block', sm: 'none' },
+              '& .MuiDrawer-paper': {
+                boxSizing: 'border-box',
+                width: 240,
+              },
+            }}
           >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" noWrap component="div">
-            HR_Analytics
-          </Typography>
-          <AvatarMenu />
-          <LanguageMenu />
-        </Toolbar>
-      </AppBar>
-      <Box
-        component="nav"
-        sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 }, zIndex: 1 }}
-        aria-label="mailbox folders"
-      >
-        <Drawer
-          variant="temporary"
-          open={mobileOpen}
-          onClose={handleDrawerToggle}
-          ModalProps={{
-            keepMounted: true,
-          }}
+            {drawer}
+          </Drawer>
+          <Drawer
+            variant="permanent"
+            sx={{
+              display: { xs: 'none', sm: 'block' },
+              '& .MuiDrawer-paper': {
+                boxSizing: 'border-box',
+                width: 240,
+              },
+            }}
+            open
+          >
+            {drawer}
+          </Drawer>
+        </Box>
+        <Box
+          component="main"
           sx={{
-            display: { xs: 'block', sm: 'none' },
-            '& .MuiDrawer-paper': {
-              boxSizing: 'border-box',
-              width: drawerWidth,
-            },
+            flexGrow: 1,
+            p: 3,
+            width: { sm: `calc(100% - ${240}px)` },
           }}
         >
-          {drawer}
-        </Drawer>
-        <Drawer
-          variant="permanent"
-          sx={{
-            display: { xs: 'none', sm: 'block' },
-            '& .MuiDrawer-paper': {
-              boxSizing: 'border-box',
-              width: drawerWidth,
-            },
-          }}
-          open
-        >
-          {drawer}
-        </Drawer>
+          <Toolbar />
+          <Outlet />
+        </Box>
       </Box>
-      <Box
-        component="main"
-        sx={{
-          flexGrow: 1,
-          p: 3,
-          width: { sm: `calc(100% - ${drawerWidth}px)` },
-        }}
-      >
-        <Toolbar />
-        <Outlet />
-      </Box>
-    </Box>
+    </ThemeProvider>
   );
 };

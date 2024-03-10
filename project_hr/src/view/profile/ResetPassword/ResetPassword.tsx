@@ -34,7 +34,7 @@ export const ResetPassword = () => {
     onSuccess: () => {
       enqueueSnackbar('Password has been reset', {
         variant: 'success',
-        autoHideDuration: 2000,
+        autoHideDuration: 1500,
         onExited: logOut,
       });
     },

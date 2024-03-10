@@ -10,14 +10,15 @@ import { Dashboard } from 'view/dashboard/Dashboard';
 import { Profile } from 'view/profile/Profile';
 import { Jobs } from 'view/jobs/Jobs';
 import { Job } from 'view/job/Job';
-import { AddJob } from 'view/addJob/AddJob';
+import { AddJob } from 'view/job/addJob/AddJob';
 import { UnprotectedRoutes } from 'components/UnprotectedRoutes/UnprotectedRoutes';
-import { EditJob } from 'view/editJob/EditJob';
+import { EditJob } from 'view/job/editJob/EditJob';
 import { Candidates } from 'view/candidates/Candidates';
 import { Candidate } from 'view/candidate/Candidate';
-import { EditCandidate } from 'view/editCandidate/EditCandidate';
-import { AddCandidate } from 'view/addCandidate/AddCandidate';
+import { EditCandidate } from 'view/candidate/editCandidate/EditCandidate';
+import { AddCandidate } from 'view/candidate/addCandidate/AddCandidate';
 import { Blacklist } from 'view/blacklist/Blacklist';
+import { Meetings } from 'view/meetings/Meetings';
 
 import {
   getSingleJobUrl,
@@ -26,6 +27,7 @@ import {
   getSingleCandidateUrl,
   editSingleCandidateUrl,
 } from './Routes';
+import { NotFoundPage } from './components/NotFoundPage';
 
 export const router = createBrowserRouter([
   {
@@ -85,6 +87,10 @@ export const router = createBrowserRouter([
             element: <Candidates />,
           },
           {
+            path: Routes.blacklistCandidates,
+            element: <Blacklist />,
+          },
+          {
             path: getSingleCandidateUrl(':id'),
             element: <Candidate />,
           },
@@ -93,12 +99,17 @@ export const router = createBrowserRouter([
             element: <EditCandidate />,
           },
           { path: Routes.addCandidate, element: <AddCandidate /> },
+
           {
-            path: Routes.blacklist,
-            element: <Blacklist />,
+            path: Routes.meetings,
+            element: <Meetings />,
           },
         ],
       },
     ],
+  },
+  {
+    path: '*',
+    element: <NotFoundPage />,
   },
 ]);

@@ -1,4 +1,4 @@
-import { Table as MuiTable } from '@mui/material';
+import { Box, Table as MuiTable } from '@mui/material';
 
 import type { CandidateColumnsType } from 'view/candidates/columns';
 import type { JobColumnsType } from 'view/jobs/columns';
@@ -7,6 +7,7 @@ import { Pagination } from './Pagination/Pagination';
 import { SelectRowsPerPage } from './Pagination/SelectRowsPerPage';
 import { Search } from './Search/Search';
 import { SelectActions } from './SelectActions/SelectActions';
+import { flexBox } from './style';
 
 export type DataCategory = 'candidates' | 'jobs';
 
@@ -32,9 +33,11 @@ export const Table = <T extends any[], Category extends DataCategory>({
 }: TableProps<T, Category>) => {
   return (
     <>
-      <SelectActions dataCategory={dataCategory} />
-      <SelectRowsPerPage />
-      <Search />
+      <Box sx={flexBox}>
+        <SelectActions dataCategory={dataCategory} />
+        <SelectRowsPerPage />
+        <Search />
+      </Box>
       <MuiTable>
         <ColumnsRenderer columns={columns} />
         <RowsRenderer data={data} />

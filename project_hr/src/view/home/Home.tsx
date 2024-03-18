@@ -1,4 +1,13 @@
-import { List, ListSubheader, Button } from '@mui/material';
+import {
+  List,
+  ListSubheader,
+  Button,
+  Container,
+  Typography,
+  Box,
+  Card,
+  CardMedia,
+} from '@mui/material';
 import { Link } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
@@ -11,6 +20,8 @@ import {
 import { jobsToListAdapter } from 'api/getPublicJobs/jobsToListAdapter';
 import { DataStatusHandler } from 'components/DataStatusHandler/DataStatusHandler';
 import { LanguageMenu } from 'layouts/DashboardLayout/LangugaeMenu/LanguageMenu';
+import { Header } from 'components/Header/Header';
+import { sxFlexBox } from 'view/signin/theme';
 
 import { JobsList } from './JobsList/JobsList';
 
@@ -20,40 +31,54 @@ export const Home = () => {
 
   return (
     <>
-      <div style={{ width: '18rem', padding: '2rem' }}>
-        <p>{t('home.title')}</p>
-        <LanguageMenu />
-        <Button
-          component={Link}
-          variant="contained"
-          color="secondary"
-          to={Routes.signin}
+      <Header title="Home" />
+      <Container component="main" maxWidth="xs" sx={sxFlexBox}>
+        <Box sx={{ mr: 'auto' }}>
+          <LanguageMenu />
+        </Box>
+        <Card sx={{ mt: 2 }}>
+          <CardMedia
+            component="img"
+            height="194"
+            image="https://eventis.pl/uploads/article/item_41/dzial-hr.webp"
+            alt="Paella dish"
+          />
+        </Card>
+        <Box>
+          <Button
+            component={Link}
+            variant="contained"
+            color="secondary"
+            to={Routes.signin}
+            sx={{ mr: 2 }}
+          >
+            <Typography variant="h6">{t('home.signin')}</Typography>
+          </Button>
+          <Button
+            component={Link}
+            variant="contained"
+            color="secondary"
+            to={Routes.signup}
+            sx={{ my: 6 }}
+          >
+            <Typography variant="h6">{t('home.signup')}</Typography>
+          </Button>
+        </Box>
+        <List
+          sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
+          component="nav"
+          aria-labelledby="nested-list-subheader"
+          subheader={
+            <ListSubheader component="div" id="nested-list-subheader">
+              <Typography>{t('home.footer_text')}</Typography>
+            </ListSubheader>
+          }
         >
-          <h2 className="bg-warning-subtle">{t('home.signin')}</h2>
-        </Button>
-        <Button
-          component={Link}
-          variant="contained"
-          color="secondary"
-          to={Routes.signup}
-        >
-          <h2 className="bg-info-subtle"> {t('home.signup')}</h2>
-        </Button>
-      </div>
-      <List
-        sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
-        component="nav"
-        aria-labelledby="nested-list-subheader"
-        subheader={
-          <ListSubheader component="div" id="nested-list-subheader">
-            <h5>{t('home.footer_text')}</h5>
-          </ListSubheader>
-        }
-      >
-        <DataStatusHandler {...results}>
-          {(data) => <JobsList list={jobsToListAdapter(data) ?? []} />}
-        </DataStatusHandler>
-      </List>
+          <DataStatusHandler {...results}>
+            {(data) => <JobsList list={jobsToListAdapter(data) ?? []} />}
+          </DataStatusHandler>
+        </List>
+      </Container>
     </>
   );
 };

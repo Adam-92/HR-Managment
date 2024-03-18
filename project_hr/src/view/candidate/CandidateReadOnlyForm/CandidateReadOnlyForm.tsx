@@ -16,6 +16,7 @@ export const CandidateReadOnlyForm = ({
       sx={{
         '& .MuiTextField-root': { m: 1 },
       }}
+      className="editForm"
     >
       <TextField
         disabled
@@ -23,6 +24,7 @@ export const CandidateReadOnlyForm = ({
         label="id"
         variant="standard"
         defaultValue={defaultValues.id}
+        fullWidth
       />
       <TextField
         disabled
@@ -30,6 +32,7 @@ export const CandidateReadOnlyForm = ({
         label="createdAt"
         variant="standard"
         defaultValue={formatDate(defaultValues.createdAt)}
+        fullWidth
       />
 
       <TextField
@@ -37,12 +40,14 @@ export const CandidateReadOnlyForm = ({
         id="name"
         label="Name"
         defaultValue={defaultValues.name}
+        fullWidth
       />
       <TextField
         disabled
         id="position"
         label="Position"
         defaultValue={defaultValues.position}
+        fullWidth
       />
 
       <TextField
@@ -50,18 +55,14 @@ export const CandidateReadOnlyForm = ({
         id="company"
         label="Company"
         defaultValue={defaultValues.companyName}
-      />
-      <TextField
-        disabled
-        id="appliedToJobId"
-        label="Applied For Job: "
-        defaultValue={defaultValues.appliedToJobId}
+        fullWidth
       />
       <TextField
         disabled
         id="shortDescription"
         label="Short Descripion"
         defaultValue={defaultValues.shortDescription}
+        fullWidth
       />
       <TextField
         disabled
@@ -70,12 +71,7 @@ export const CandidateReadOnlyForm = ({
         defaultValue={defaultValues.longDescription}
         multiline
         rows={4}
-      />
-      <TextField
-        disabled
-        id="logo"
-        label="Logo"
-        defaultValue={defaultValues.logo}
+        fullWidth
       />
     </Box>
   );

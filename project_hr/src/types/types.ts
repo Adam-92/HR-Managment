@@ -5,10 +5,14 @@ export type Job = {
   title: string;
   shortDescription: string;
   longDescription: string;
-  logo: string;
   companyName: string;
   status: 'OPEN' | 'CLOSED';
 };
+
+export type AutocompleteData = {
+  label: string;
+  id: string;
+}[];
 
 export type JobResponse = {
   data: Job;
@@ -18,7 +22,6 @@ export type JobPayload = {
   title: string;
   shortDescription: string;
   longDescription: string;
-  logo: string;
   companyName: string;
 };
 
@@ -30,9 +33,7 @@ export type Candidate = {
   position: string;
   shortDescription: string;
   longDescription: string;
-  logo: string;
   companyName: string;
-  appliedToJobId: string;
 };
 
 export type CandidatePayload = {
@@ -40,9 +41,7 @@ export type CandidatePayload = {
   position: string;
   shortDescription: string;
   longDescription: string;
-  logo: string;
   companyName: string;
-  appliedToJobId: string | null;
 };
 
 export type CandidateResponse = {

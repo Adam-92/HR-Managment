@@ -1,38 +1,18 @@
-import { useState } from 'react';
-import { TextField, InputAdornment, ListItemIcon } from '@mui/material';
-import { Clear } from '@mui/icons-material';
+import { TextField } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 
 import { useTable } from 'providers/table/useTable';
 
 export const Search = () => {
   const { search } = useTable();
-  const [isClearIcon, setIsClearIcon] = useState(false);
-
+  const { t } = useTranslation();
   return (
     <TextField
-      id="outlined-basic"
-      label="Outlined"
+      label={t('tableToolbar.searchLabel')}
       variant="outlined"
+      type="search"
       value={search.value}
       onChange={search.handleChange}
-      onMouseOver={() => setIsClearIcon(true)}
-      onMouseOut={() => setIsClearIcon(false)}
-      style={{ position: 'relative' }}
-      InputProps={{
-        endAdornment: search.value && isClearIcon && (
-          <InputAdornment
-            position="end"
-            style={{ position: 'absolute', top: 15, right: -30 }}
-          >
-            <ListItemIcon
-              onClick={search.clearValue}
-              style={{ cursor: 'pointer' }}
-            >
-              <Clear fontSize="small" />
-            </ListItemIcon>
-          </InputAdornment>
-        ),
-      }}
     />
   );
 };

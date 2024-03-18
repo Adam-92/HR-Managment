@@ -5,6 +5,7 @@ import {
   MenuItem,
   FormHelperText,
 } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 
 import { useTable } from 'providers/table/useTable';
 import type { DataCategory } from 'components/Table/Table';
@@ -19,30 +20,24 @@ type SelectActionsProps = {
 export const SelectActions = ({ dataCategory }: SelectActionsProps) => {
   const { checkboxRow } = useTable();
   const { value, handleChange } = useSelectActions(dataCategory, checkboxRow);
-
+  const { t } = useTranslation();
   return (
-    <FormControl
-      sx={{ m: 1, minWidth: 120 }}
-      disabled={!checkboxRow.someRowsAreMarked}
-    >
-      <InputLabel id="demo-simple-select-disabled-label">Select</InputLabel>
+    <FormControl disabled={!checkboxRow.someRowsAreMarked} className="mr">
+      <InputLabel>{t('tableToolbar.select')}</InputLabel>
       <Select
-        labelId="demo-simple-select-disabled-label"
-        id="demo-simple-select-disabled"
         value={value}
-        label="Actions"
+        label={t('tableToolbar.actions')}
         onChange={handleChange}
       >
-        F
         {actions.map((action) => {
           return (
             <MenuItem value={action} key={action}>
-              {action}
+              {t(`tableToolbar.actionTypes.${action}`)}
             </MenuItem>
           );
         })}
       </Select>
-      <FormHelperText>Available if marked rows</FormHelperText>
+      <FormHelperText>{t('tableToolbar.availableRows')}</FormHelperText>
     </FormControl>
   );
 };

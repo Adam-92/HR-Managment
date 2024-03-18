@@ -34,7 +34,7 @@ export const ResetUsername = () => {
     queryClient.invalidateQueries([QUERY_KEY_USER]);
     enqueueSnackbar('Username has been reset', {
       variant: 'success',
-      autoHideDuration: 2000,
+      autoHideDuration: 1500,
     });
   };
 

@@ -23,6 +23,7 @@ export const TableProvider = <T extends any[]>({
   const sort = useSort();
   const sortedData = sort.getSortedData(data);
 
+  // const search = useSearch([...columns]);
   const search = useSearch([...columns]);
   const searchedData = search.getSearchedData(sortedData);
 

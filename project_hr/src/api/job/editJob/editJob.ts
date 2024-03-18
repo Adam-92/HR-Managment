@@ -6,7 +6,6 @@ export type EditJob = {
   title: string;
   shortDescription: string;
   longDescription: string;
-  logo: string;
   companyName: string;
 };
 

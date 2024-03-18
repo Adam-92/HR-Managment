@@ -5,7 +5,13 @@ import { ConfirmProvider } from 'material-ui-confirm';
 
 import type { AppProvidersProps } from './AppProviders.types';
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+    },
+  },
+});
 
 export const AppProviders = ({ children }: AppProvidersProps) => {
   return (

@@ -1,13 +1,12 @@
 /* eslint-disable @typescript-eslint/no-shadow */
-import { Link } from 'react-router-dom';
-import { Alert, Button, CircularProgress } from '@mui/material';
+import { Alert, CircularProgress } from '@mui/material';
 
-import { Routes } from 'routing/Routes';
 import { parseError } from 'errors/parseError';
 import { Table } from 'components/Table/Table';
 import { TableProvider } from 'providers/table/TableProvider';
 import { Header } from 'components/Header/Header';
 import { useCandidates } from 'api/candidates/useCandidates';
+import { TableToolbar } from 'components/Table/TableToolbar';
 
 import { columns } from './columns';
 import { CandidatesRows } from './CandidatesRows';
@@ -33,14 +32,7 @@ export const Candidates = () => {
       <TableProvider data={data} columns={columns}>
         {(data) => (
           <>
-            <Button
-              component={Link}
-              to={Routes.addCandidate}
-              variant="contained"
-              color="success"
-            >
-              + Add
-            </Button>
+            <TableToolbar dataCategory="candidates" link="addCandidate" />
             <Table
               data={data}
               dataCategory="candidates"

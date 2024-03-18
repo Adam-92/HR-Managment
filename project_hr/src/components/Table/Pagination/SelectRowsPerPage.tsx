@@ -1,4 +1,11 @@
-import { FormControl, Select, MenuItem, FormHelperText } from '@mui/material';
+import {
+  FormControl,
+  Select,
+  MenuItem,
+  InputLabel,
+  FormHelperText,
+} from '@mui/material';
+import { useTranslation } from 'react-i18next';
 
 import { useTable } from 'providers/table/useTable';
 
@@ -6,10 +13,10 @@ import { rowsPerPage } from './rowsPerPage';
 
 export const SelectRowsPerPage = () => {
   const { pagination } = useTable();
-
+  const { t } = useTranslation();
   return (
-    <FormControl sx={{ m: 1, minWidth: 120 }}>
-      <FormHelperText>Show Rows:</FormHelperText>
+    <FormControl className="actionsSelf" sx={{ mx: '1rem' }}>
+      <InputLabel>{t(`tableToolbar.select`)}</InputLabel>
       <Select
         value={pagination.rowsPerPage}
         onChange={pagination.handleChangeRowsPerPage}
@@ -21,6 +28,7 @@ export const SelectRowsPerPage = () => {
           </MenuItem>
         ))}
       </Select>
+      <FormHelperText>{t(`tableToolbar.showRows`)}</FormHelperText>
     </FormControl>
   );
 };

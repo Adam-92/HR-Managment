@@ -10,19 +10,19 @@ import {
 
 import type { BlacklistData } from 'api/blacklist/getBlacklist';
 
-import { useBlacklistParams } from './useBlacklistParams';
+import { useBlacklist } from './useBlacklist';
+import { columnsName } from './columnsName';
 
 type Rows = {
   data: BlacklistData[];
 };
 
 type BlacklistTableProps = {
-  columnsName: string[];
   rows: Rows;
 };
 
-export const BlacklistTable = ({ columnsName, rows }: BlacklistTableProps) => {
-  const { handleSortColumn } = useBlacklistParams();
+export const BlacklistTable = ({ rows }: BlacklistTableProps) => {
+  const { handleSortColumn } = useBlacklist();
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -48,7 +48,7 @@ export const BlacklistTable = ({ columnsName, rows }: BlacklistTableProps) => {
               <TableCell component="th" scope="row">
                 {row.name}
               </TableCell>
-              <TableCell align="right">{row.reason}</TableCell>
+              <TableCell align="justify">{row.reason}</TableCell>
             </TableRow>
           ))}
         </TableBody>

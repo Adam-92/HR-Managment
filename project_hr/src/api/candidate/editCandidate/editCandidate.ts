@@ -7,9 +7,7 @@ export type EditCandidate = {
   position: string;
   shortDescription: string;
   longDescription: string;
-  logo: string;
   companyName: string;
-  appliedToJobId: string | null;
 };
 
 export const editCandidate = async (payload: EditCandidate) => {

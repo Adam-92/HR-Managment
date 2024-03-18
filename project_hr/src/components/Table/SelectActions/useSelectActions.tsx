@@ -13,7 +13,7 @@ export const useSelectActions = (
   dataCategory: DataCategory,
   checkboxRow: UseCheckboxRowProps,
 ) => {
-  const [value, setValue] = useState<SelectActionsValue>('Actions');
+  const [value] = useState<SelectActionsValue>('actions');
 
   const { handleDeleteCandidates } = useDeleteCandidates(
     checkboxRow.markedRows,
@@ -24,12 +24,12 @@ export const useSelectActions = (
     (event: SelectChangeEvent) => {
       const item = event.target.value as SelectActionsValue;
 
-      if (item === 'Delete' && dataCategory === 'candidates') {
+      if (item === 'delete' && dataCategory === 'candidates') {
         handleDeleteCandidates();
         checkboxRow.unmarkAllRows();
       }
 
-      if (item === 'Delete' && dataCategory === 'jobs') {
+      if (item === 'delete' && dataCategory === 'jobs') {
         handleDeleteJobs();
         checkboxRow.unmarkAllRows();
       }

@@ -54,6 +54,7 @@ module.exports = {
     'react/jsx-props-no-spreading': 'off',
     'import/prefer-default-export': 'off',
     'import/no-default-export': 'error',
+    'import/no-unresolved': [2, { ignore: ['\\.css$'] }],
     'class-methods-use-this': 'off',
     'arrow-body-style': 'off',
     'prettier/prettier': 'error',

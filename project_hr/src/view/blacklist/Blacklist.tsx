@@ -6,23 +6,36 @@ import {
   getBlacklist,
   QUERY_KEY_GET_BLACKLIST,
 } from 'api/blacklist/getBlacklist';
+import { Header } from 'components/Header/Header';
 
-import { useBlacklistParams } from './useBlacklistParams';
+import { useBlacklist } from './useBlacklist';
 import { BlacklistTable } from './BlacklistTable';
+import { validateParams } from './validateParams';
 
 export const Blacklist = () => {
-  const {
-    params,
-    currentPage,
-    handleChangePage,
-    handleChangeRowsPerPage,
-    columnsName,
-  } = useBlacklistParams();
+  const { params, currentPage, handleChangePage, handleChangeRowsPerPage } =
+    useBlacklist();
+  const paramErrors = validateParams(params);
 
   const { isLoading, data, isError, error } = useQuery(
     [QUERY_KEY_GET_BLACKLIST, params],
     () => getBlacklist(params),
+    {
+      enabled: paramErrors.length === 0,
+    },
   );
+
+  if (paramErrors.length > 0) {
+    return (
+      <>
+        {paramErrors.map((err) => (
+          <Alert key={err} severity="warning">
+            {err}
+          </Alert>
+        ))}
+      </>
+    );
+  }
 
   if (isLoading) {
     return <CircularProgress />;
@@ -33,7 +46,8 @@ export const Blacklist = () => {
   }
   return (
     <>
-      <BlacklistTable columnsName={columnsName} rows={data} />
+      <Header title="Blacklist" />
+      <BlacklistTable rows={data} />
       <TablePagination
         component="div"
         count={data.count}

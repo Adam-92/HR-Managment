@@ -7,6 +7,7 @@ import {
 } from '@mui/material';
 
 import { useUser } from 'api/getUser/useUser';
+import { Header } from 'components/Header/Header';
 import { parseError } from 'errors/parseError';
 
 export const AboutMe = () => {
@@ -21,18 +22,21 @@ export const AboutMe = () => {
   }
 
   return (
-    <Card sx={{ minWidth: 275 }}>
-      <CardContent>
-        <Typography sx={{ fontSize: 18 }} color="text.primary" gutterBottom>
-          Your name: {data.firstName}
-        </Typography>
-        <Typography sx={{ mb: 1.5, fontSize: 18 }} color="text.primary">
-          Your last name: {data.lastName}
-        </Typography>
-        <Typography sx={{ mb: 1.5, fontSize: 18 }} color="text.primary">
-          Your email: {data.email}
-        </Typography>
-      </CardContent>
-    </Card>
+    <>
+      <Header title="About Me" />
+      <Card sx={{ minWidth: 275 }}>
+        <CardContent>
+          <Typography sx={{ fontSize: 18 }} color="text.primary" gutterBottom>
+            Your name: {data.firstName}
+          </Typography>
+          <Typography sx={{ mb: 1.5, fontSize: 18 }} color="text.primary">
+            Your last name: {data.lastName}
+          </Typography>
+          <Typography sx={{ mb: 1.5, fontSize: 18 }} color="text.primary">
+            Your email: {data.email}
+          </Typography>
+        </CardContent>
+      </Card>
+    </>
   );
 };

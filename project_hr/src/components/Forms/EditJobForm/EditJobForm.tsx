@@ -32,9 +32,7 @@ export const EditJobForm = (props: EditJobFormProps) => {
   return (
     <Box
       component="form"
-      sx={{
-        '& .MuiTextField-root': { m: 1 },
-      }}
+      className="editForm"
       onSubmit={handleSubmit(props.handleEditJobFormSubmission)}
     >
       <TextField
@@ -43,6 +41,7 @@ export const EditJobForm = (props: EditJobFormProps) => {
         {...register('companyName')}
         error={!!errors.companyName}
         helperText={errors.companyName?.message}
+        fullWidth
       />
       <TextField
         id="title"
@@ -50,6 +49,7 @@ export const EditJobForm = (props: EditJobFormProps) => {
         {...register('title')}
         error={!!errors.title}
         helperText={errors.title?.message}
+        fullWidth
       />
       <TextField
         id="shortDescription"
@@ -57,6 +57,7 @@ export const EditJobForm = (props: EditJobFormProps) => {
         {...register('shortDescription')}
         error={!!errors.shortDescription}
         helperText={errors.shortDescription?.message}
+        fullWidth
       />
       <TextField
         id="longDescription"
@@ -66,15 +67,8 @@ export const EditJobForm = (props: EditJobFormProps) => {
         helperText={errors.longDescription?.message}
         multiline
         rows={4}
+        fullWidth
       />
-      <TextField
-        id="logo"
-        label="Logo"
-        {...register('logo')}
-        error={!!errors.logo}
-        helperText={errors.logo?.message}
-      />
-
       <Button
         variant="contained"
         disabled={!isDirty}

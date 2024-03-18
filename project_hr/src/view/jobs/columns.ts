@@ -1,12 +1,11 @@
 export const columns = [
+  'title',
   'companyName',
   'createdAt',
-  'logo',
-  'longDescription',
-  'shortDescription',
-  'status',
-  'title',
   'updatedAt',
+  'status',
+  'shortDescription',
+  'longDescription',
 ] as const;
 
 export type JobColumnsType = typeof columns;

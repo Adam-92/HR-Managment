@@ -1,3 +1,3 @@
-export const actions = ['Actions', 'Delete'] as const;
+export const actions = ['actions', 'delete'] as const;
 
 export type SelectActionsValue = (typeof actions)[number];

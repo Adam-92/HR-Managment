@@ -1,5 +1,11 @@
 import { useParams, Link } from 'react-router-dom';
-import { Button, CircularProgress, Alert } from '@mui/material';
+import {
+  Button,
+  CircularProgress,
+  Alert,
+  Box,
+  Typography,
+} from '@mui/material';
 
 import { useCandidate } from 'api/candidate/getCandidate/useCandidate';
 import { editSingleCandidateUrl, Routes } from 'routing/Routes';
@@ -26,18 +32,25 @@ export const Candidate = () => {
   return (
     <>
       <Header title={data.position} />
+      <Box className="mb2 flexBetween">
+        <Typography variant="h4" component="h4" className="header">
+          {data.companyName}
+        </Typography>
+        <Button component={Link} to={Routes.candidates} variant="contained">
+          Back To List
+        </Button>
+      </Box>
       <CandidateReadOnlyForm defaultValues={data} />
-      <Button
-        component={Link}
-        to={editSingleCandidateUrl(id)}
-        variant="contained"
-        color="warning"
-      >
-        EDIT
-      </Button>
-      <Button component={Link} to={Routes.candidates} variant="contained">
-        Back To List
-      </Button>
+      <Box textAlign="center">
+        <Button
+          component={Link}
+          to={editSingleCandidateUrl(id)}
+          variant="contained"
+          color="warning"
+        >
+          EDIT
+        </Button>
+      </Box>
     </>
   );
 };

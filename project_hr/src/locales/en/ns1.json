@@ -20,6 +20,7 @@
     "alreadyHaveAcc": "Already have an account? Then click here!"
   },
   "dashboard": {
+    "panel": "Go to the module:",
     "tabs": {
       "home": "Home",
       "jobs": "Jobs",
@@ -28,5 +29,36 @@
       "blacklist": "Blacklist",
       "list": "List"
       }
-    }
+    },
+  "tableToolbar": {
+    "add": "Add",
+    "select": "Select",
+    "actions": "Actions",
+    "actionTypes": {
+      "actions": "Actions",
+      "delete": "Delete"
+    },
+    "availableRows": "Available if marked rows",
+    "showRows": "Show Rows",
+    "searchLabel": "Search ..."
+  },
+  "tableCandidates": {
+   "name": "Name",
+   "position": "Position",
+   "companyName": "Company",
+   "createdAt": "Created",
+   "updatedAt": "Updated",
+   "shortDescription": "Description",
+   "longDescription": "Long description",
+   "": ""
+  },
+  "tableJobs": {
+    "companyName": "Company",
+    "createdAt": "Created",
+    "longDescription": "Long description",
+    "shortDescription": "Description",
+    "status": "Status",
+    "title": "Title",
+    "updatedAt": "Updated"
+   }
 }

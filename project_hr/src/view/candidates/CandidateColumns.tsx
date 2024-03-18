@@ -1,10 +1,5 @@
-import {
-  TableRow,
-  TableCell,
-  TableHead,
-  Checkbox,
-  TableSortLabel,
-} from '@mui/material';
+import { TableRow, TableCell, TableHead, Checkbox } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 
 import { useTable } from 'providers/table/useTable';
 
@@ -17,6 +12,7 @@ export type CandidateColumnsProps = {
 
 export const CandidateColumns = ({ columns }: CandidateColumnsProps) => {
   const { checkboxRow } = useTable();
+  const { t } = useTranslation();
   return (
     <TableHead>
       <TableRow>
@@ -32,9 +28,7 @@ export const CandidateColumns = ({ columns }: CandidateColumnsProps) => {
         {columns.map((column) => {
           return <CandidateColumn column={column} key={column} />;
         })}
-        <TableCell>
-          <TableSortLabel>Actions</TableSortLabel>
-        </TableCell>
+        <TableCell>{t('tableToolbar.actions')}</TableCell>
       </TableRow>
     </TableHead>
   );

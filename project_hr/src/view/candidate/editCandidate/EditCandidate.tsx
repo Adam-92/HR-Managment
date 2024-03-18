@@ -1,7 +1,7 @@
 import { useSnackbar } from 'notistack';
 import { useNavigate, useParams, Link } from 'react-router-dom';
-import { useMutation } from '@tanstack/react-query';
-import { Typography, CircularProgress, Button } from '@mui/material';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { Typography, CircularProgress, Button, Box } from '@mui/material';
 
 import { getSingleCandidateUrl, Routes } from 'routing/Routes';
 import { Header } from 'components/Header/Header';
@@ -10,6 +10,7 @@ import { useCandidate } from 'api/candidate/getCandidate/useCandidate';
 import type { CandidatePayload, CandidateResponse } from 'types/types';
 import { parseError } from 'errors/parseError';
 import { editCandidate } from 'api/candidate/editCandidate/editCandidate';
+import { QUERY_KEY_GET_CANDIDATE } from 'api/candidate/getCandidate/getCandidate';
 
 export const EditCandidate = () => {
   const { id } = useParams();
@@ -19,14 +20,14 @@ export const EditCandidate = () => {
   const navigate = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
   const result = useCandidate(id);
-
+  const queryClient = useQueryClient();
   const { mutate, isLoading } = useMutation(
     (payload: CandidatePayload) => editCandidate({ ...payload, id }),
     {
       onSuccess: ({ data }: CandidateResponse) => {
+        queryClient.invalidateQueries([QUERY_KEY_GET_CANDIDATE]);
         enqueueSnackbar(`${data.name} has been added`, {
           variant: 'success',
-          autoHideDuration: 1500,
           onExited: () => navigate(Routes.candidates),
         });
       },
@@ -45,19 +46,23 @@ export const EditCandidate = () => {
   return (
     <>
       <Header title="HR Edit Candidate" />
-      <Typography>Edit Candidate</Typography>
+      <Box className="mb2 flexBetween">
+        <Typography variant="h4" component="h4" className="header">
+          {result.data?.companyName}
+        </Typography>
+        <Button
+          component={Link}
+          to={getSingleCandidateUrl(id)}
+          variant="contained"
+        >
+          GO BACK
+        </Button>
+      </Box>
       <EditCandidateForm
         type="edit"
         defaultValues={result.data}
         handleEditCandidateFormSubmission={onSubmit}
       />
-      <Button
-        component={Link}
-        to={getSingleCandidateUrl(id)}
-        variant="contained"
-      >
-        GO BACK
-      </Button>
     </>
   );
 };

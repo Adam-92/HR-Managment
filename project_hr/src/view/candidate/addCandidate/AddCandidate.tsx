@@ -1,7 +1,7 @@
 import { useSnackbar } from 'notistack';
 import { useNavigate, Link } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
-import { Typography, CircularProgress, Button } from '@mui/material';
+import { Typography, CircularProgress, Button, Box } from '@mui/material';
 
 import { addCandidate } from 'api/candidate/addCandidate/addCandidate';
 import { parseError } from 'errors/parseError';
@@ -20,7 +20,6 @@ export const AddCandidate = () => {
     onSuccess: ({ data }: CandidateResponse) => {
       enqueueSnackbar(`${data.name} has been added`, {
         variant: 'success',
-        autoHideDuration: 1500,
         onExited: () => navigate(Routes.candidates),
       });
     },
@@ -38,21 +37,32 @@ export const AddCandidate = () => {
   return (
     <>
       <Header title="Add Candidate" />
-      <Typography variant="h3" component="h3">
-        Add Candidate
-      </Typography>
-      {result.data && (
-        <Typography sx={{ fontSize: 18 }} color="text.secondary">
-          # {result.data.length + 1}
+      <Box className="flexBetween mb2">
+        <Typography variant="h4" component="h4" className="header">
+          Add Candidate
         </Typography>
-      )}
+        {result.data && (
+          <Typography
+            className="headerNextNumber"
+            sx={{ mr: 'auto', ml: '1rem' }}
+            color="text.secondary"
+          >
+            # {result.data.length + 1}
+          </Typography>
+        )}
+        <Button
+          component={Link}
+          to={Routes.candidates}
+          variant="contained"
+          className="mr3"
+        >
+          Back To List
+        </Button>
+      </Box>
       <EditCandidateForm
         type="edit"
         handleEditCandidateFormSubmission={onSubmit}
       />
-      <Button component={Link} to={Routes.candidates} variant="contained">
-        Back To List
-      </Button>
     </>
   );
 };

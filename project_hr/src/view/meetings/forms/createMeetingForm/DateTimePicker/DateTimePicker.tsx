@@ -32,6 +32,7 @@ export const DateTimePicker = ({ control }: DateTimePickerProps) => {
               maxDate={dayjs(new Date(2024, 11, 31))}
               slotProps={{
                 textField: {
+                  fullWidth: true,
                   error: !!error,
                   helperText: error?.message,
                 },

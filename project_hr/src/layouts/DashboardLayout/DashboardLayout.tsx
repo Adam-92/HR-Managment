@@ -45,25 +45,22 @@ export const DashboardLayout = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <Box sx={{ display: 'flex' }}>
+      <Box className="dflex">
         <CssBaseline />
-        <AppBar>
+        <AppBar className="appBar">
           <Toolbar>
             <IconButton aria-label="open drawer" onClick={handleDrawerToggle}>
               <MenuIcon />
             </IconButton>
-            <Typography variant="h6" noWrap component="div">
+            <Typography
+              variant="h6"
+              noWrap
+              component="div"
+              color="cornflowerblue"
+            >
               HR JOBS
             </Typography>
-            <Box
-              sx={{
-                background: 'white',
-                width: '4.5rem',
-                height: '5vh',
-                marginLeft: '3.5rem',
-                borderRadius: '2rem',
-              }}
-            >
+            <Box className="languageBox">
               <LanguageMenu />
             </Box>
             <AvatarMenu />

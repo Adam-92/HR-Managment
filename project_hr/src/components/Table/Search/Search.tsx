@@ -1,22 +1,18 @@
-import { Box, TextField } from '@mui/material';
+import { TextField } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 
 import { useTable } from 'providers/table/useTable';
 
-import { boxSx } from '../style';
-
 export const Search = () => {
   const { search } = useTable();
-
+  const { t } = useTranslation();
   return (
-    <Box sx={boxSx}>
-      <TextField
-        id="search"
-        label="search"
-        variant="outlined"
-        type="search"
-        value={search.value}
-        onChange={search.handleChange}
-      />
-    </Box>
+    <TextField
+      label={t('tableToolbar.searchLabel')}
+      variant="outlined"
+      type="search"
+      value={search.value}
+      onChange={search.handleChange}
+    />
   );
 };

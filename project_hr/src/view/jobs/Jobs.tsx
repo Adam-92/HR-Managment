@@ -1,13 +1,12 @@
 /* eslint-disable @typescript-eslint/no-shadow */
-import { Link } from 'react-router-dom';
-import { Alert, Button, CircularProgress } from '@mui/material';
+import { Alert, CircularProgress } from '@mui/material';
 
-import { Routes } from 'routing/Routes';
 import { parseError } from 'errors/parseError';
 import { Table } from 'components/Table/Table';
 import { TableProvider } from 'providers/table/TableProvider';
 import { Header } from 'components/Header/Header';
 import { useJobs } from 'api/jobs/useJobs';
+import { TableToolbar } from 'components/Table/TableToolbar';
 
 import { columns } from './columns';
 import { JobRows } from './JobRows';
@@ -34,14 +33,7 @@ export const Jobs = () => {
       <TableProvider data={data} columns={columns}>
         {(data) => (
           <>
-            <Button
-              component={Link}
-              to={Routes.addJob}
-              variant="contained"
-              color="success"
-            >
-              + Add
-            </Button>
+            <TableToolbar dataCategory="jobs" link="addJob" />
             <Table
               data={data}
               dataCategory="jobs"

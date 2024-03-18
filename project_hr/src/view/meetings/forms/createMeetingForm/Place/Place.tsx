@@ -32,6 +32,7 @@ export const Place = ({ control, watch }: PlaceProps) => {
       }}
       render={({ field: { value, onChange }, fieldState: { error } }) => (
         <TextField
+          sx={{ ml: '1rem' }}
           value={value ?? ''}
           onChange={(e) => onChange(e.target.value)}
           label={label}

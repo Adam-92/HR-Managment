@@ -71,30 +71,39 @@ export const MeetingDetailsForm = ({
       onSubmit={handleSubmit(onSubmit)}
       noValidate
       autoComplete="off"
+      className="editForm"
     >
-      <DialogContent>
-        <TextField disabled label="Meeting ID:" {...register('id')} />
+      <DialogContent sx={{ overflow: 'hidden' }}>
+        <TextField disabled label="Meeting ID:" {...register('id')} fullWidth />
         <TextField
           disabled
           label="Date of Meeting:"
           defaultValue={meetingDetails?.date}
+          fullWidth
         />
         <TextField
           disabled
           label="Candidate name:"
           defaultValue={meetingDetails?.candidate.name}
+          fullWidth
         />
-
         <TextField
           disabled
           label="Job:"
           defaultValue={meetingDetails?.job.title}
+          fullWidth
         />
-        <TextField disabled label="type:" defaultValue={meetingDetails?.type} />
+        <TextField
+          disabled
+          label="type:"
+          defaultValue={meetingDetails?.type}
+          fullWidth
+        />
         <TextField
           disabled
           label="Place/URL:"
           defaultValue={meetingDetails?.place}
+          fullWidth
         />
       </DialogContent>
       <DialogActions>

@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 import { TableCell, TableSortLabel } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 
 import { useTable } from 'providers/table/useTable';
-import { seperateCamelCase } from 'utils/seperateCamelCase';
 
 import type { CandidateColumnsType } from './columns';
 
@@ -15,11 +15,14 @@ export const CandidateColumn = ({ column }: CandidateColumnProps) => {
 
   const sortQuery = sort.getSortQueryParam(column);
   const searchParams = new URLSearchParams(sortQuery);
+  const { t } = useTranslation();
 
   return (
     <TableCell key={column}>
       <Link to={`./?${searchParams}`}>
-        <TableSortLabel>{seperateCamelCase(column)}</TableSortLabel>
+        <TableSortLabel sx={{ whiteSpace: 'nowrap' }}>
+          {t(`tableCandidates.${column}`)}
+        </TableSortLabel>
       </Link>
     </TableCell>
   );

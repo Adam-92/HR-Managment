@@ -13,7 +13,7 @@ export const theme = createTheme({
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'flex-start',
-          minWidth: 300,
+          minWidth: 330,
           minHeight: 200,
         },
       },

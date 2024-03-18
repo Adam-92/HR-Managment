@@ -13,7 +13,7 @@ import { Header } from 'components/Header/Header';
 import { Routes } from 'routing/Routes';
 
 import { PanelCard } from './PanelCard/PanelCard';
-import { theme } from './style/theme';
+import { theme } from './theme';
 
 export const Dashboard = () => {
   const results = useQueries({
@@ -26,15 +26,8 @@ export const Dashboard = () => {
   return (
     <ThemeProvider theme={theme}>
       <Header title={t('dashboard.tabs.home')} />
-      <Box
-        sx={{
-          display: 'flex',
-          flexWrap: 'wrap',
-          alignItems: 'center',
-          justifyContent: 'space-evenly',
-        }}
-      >
-        <DataStatusHandler {...results[0]}>
+      <Box className="flexEvenly">
+        <DataStatusHandler {...results[1]}>
           {(data) => (
             <PanelCard
               text={t('dashboard.tabs.candidates')}
@@ -44,7 +37,7 @@ export const Dashboard = () => {
             />
           )}
         </DataStatusHandler>
-        <DataStatusHandler {...results[1]}>
+        <DataStatusHandler {...results[0]}>
           {(data) => (
             <PanelCard
               text={t('dashboard.tabs.jobs')}

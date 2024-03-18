@@ -1,0 +1,120 @@
+.dflex{
+    display: flex
+}
+
+.appBar{
+    background: linear-gradient(  150deg,   #ffffff 67%,   #606dbc 69%);
+}
+
+.cursor {
+    cursor: pointer;
+}
+
+.fColumn {
+    flex-direction: column;
+}
+
+.flexBetween {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.flexEvenly {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.bFlex {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    justify-items: baseline;
+   }
+.avatar {
+    background-color: darksalmon;
+    width: 28;
+    height: 28;
+    margin-right: 5px;
+    text-transform: lowercase;
+  }
+.buttonSelf {
+    align-self: center;
+    margin-right:  auto;
+    margin-left: 1rem;
+}
+.actionsSelf {
+    align-self: flex-end;
+}
+
+.mt1{
+    margin-top: 1rem;
+}
+.mr {
+    margin-right: 1rem;
+}
+.ml {
+    margin-left: 1rem
+}
+.pt {
+    padding-top: 1.3em; 
+ }
+
+.mb1 {
+    margin-bottom: 1rem;
+}
+
+.mb2 {
+ margin-bottom: 2rem;
+}
+.header {
+    text-decoration: overline;
+    color: #606dbc;
+    font-size: 1.5rem;
+}
+.headerNextNumber{
+    font-size: 20px;
+    font-style: oblique;
+}
+
+.borderSolid {
+    border-bottom: 2px solid mediumslateblue;
+}
+
+.justify {
+    justify-content: center;
+}
+.mr3{
+    margin-right: 3rem;
+}
+.editForm {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 60%;
+    margin: 0 auto;
+}
+.editForm div {
+    margin: 5px;
+}
+
+.languageBox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    width: 4.5rem;
+    height: 5vh;
+    margin-left: 3.5rem;
+    border-radius: 2rem;
+}
+
+@media  (min-width: 600px) {
+    .css-12r5w8l-MuiButtonBase-root-MuiIconButton-root {
+        display: block !important
+    }
+    .css-18f5v8h-MuiButtonBase-root-MuiIconButton-root-MuiAutocomplete-popupIndicator {
+        display: block !important;
+    }
+}

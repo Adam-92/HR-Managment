@@ -9,7 +9,7 @@ export interface Resources {
     signin: {
       email: 'email';
       password: 'password';
-      rememberMe: 'RememberMe';
+      rememberMe: 'Remember Me';
       dontHaveAcc: "Don't have account?";
     };
     signup: {
@@ -21,6 +21,7 @@ export interface Resources {
       alreadyHaveAcc: 'Already have an account? Then click here!';
     };
     dashboard: {
+      panel: 'Go to the module:';
       tabs: {
         home: 'Home';
         jobs: 'Jobs';
@@ -30,9 +31,36 @@ export interface Resources {
         list: 'List';
       };
     };
-    content: {
-      openPositions: 'Open Positions';
-      candidates: 'Candidates';
+    tableToolbar: {
+      add: 'Add';
+      select: 'Select';
+      actions: 'Actions';
+      actionTypes: {
+        actions: 'Actions';
+        delete: 'Delete';
+      };
+      availableRows: 'Available if marked rows';
+      showRows: 'Show Rows';
+      searchLabel: 'Search ...';
+    };
+    tableCandidates: {
+      name: 'Name';
+      position: 'Position';
+      companyName: 'Company';
+      createdAt: 'Created';
+      updatedAt: 'Updated';
+      shortDescription: 'Description';
+      longDescription: 'Long description';
+      '': '';
+    };
+    tableJobs: {
+      companyName: 'Company';
+      createdAt: 'Created';
+      longDescription: 'Long description';
+      shortDescription: 'Description';
+      status: 'Status';
+      title: 'Title';
+      updatedAt: 'Updated';
     };
   };
 }

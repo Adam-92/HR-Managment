@@ -5,6 +5,8 @@ import {
   Container,
   Typography,
   Box,
+  Card,
+  CardMedia,
 } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
@@ -19,6 +21,7 @@ import { jobsToListAdapter } from 'api/getPublicJobs/jobsToListAdapter';
 import { DataStatusHandler } from 'components/DataStatusHandler/DataStatusHandler';
 import { LanguageMenu } from 'layouts/DashboardLayout/LangugaeMenu/LanguageMenu';
 import { Header } from 'components/Header/Header';
+import { sxFlexBox } from 'view/signin/theme';
 
 import { JobsList } from './JobsList/JobsList';
 
@@ -29,25 +32,18 @@ export const Home = () => {
   return (
     <>
       <Header title="Home" />
-      <Container
-        component="main"
-        maxWidth="xs"
-        sx={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          flexDirection: 'column',
-        }}
-      >
+      <Container component="main" maxWidth="xs" sx={sxFlexBox}>
         <Box sx={{ mr: 'auto' }}>
           <LanguageMenu />
         </Box>
-        <Typography
-          variant="h5"
-          sx={{ fontFamily: 'auto', mt: 5, textAlign: 'center' }}
-        >
-          {t('home.title')}
-        </Typography>
+        <Card sx={{ mt: 2 }}>
+          <CardMedia
+            component="img"
+            height="194"
+            image="https://eventis.pl/uploads/article/item_41/dzial-hr.webp"
+            alt="Paella dish"
+          />
+        </Card>
         <Box>
           <Button
             component={Link}

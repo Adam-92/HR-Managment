@@ -1,6 +1,6 @@
 import { Card, CardContent, Typography, SvgIcon, Link } from '@mui/material';
 import type { SvgIconComponent } from '@mui/icons-material';
-import '../style/style.css';
+import { useTranslation } from 'react-i18next';
 
 type BasicCardProps = {
   route: string;
@@ -10,6 +10,7 @@ type BasicCardProps = {
 };
 
 export const PanelCard = ({ text, data, icon, route }: BasicCardProps) => {
+  const { t } = useTranslation();
   return (
     <Link href={route}>
       <Card>
@@ -18,7 +19,7 @@ export const PanelCard = ({ text, data, icon, route }: BasicCardProps) => {
           <SvgIcon component={icon} />
           <Typography>{data?.length}</Typography>
           <Typography className={`${!data && 'pt'}`}>
-            Go to the module:
+            {t('dashboard.panel')}
           </Typography>
         </CardContent>
       </Card>

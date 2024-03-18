@@ -42,20 +42,20 @@ export const JobRows = ({ data }: JobRowsProps) => {
         return (
           <TableRow key={job.id}>
             <CheckboxRow id={job.id} />
+            <TableCell>{job.title}</TableCell>
             <TableCell>{job.companyName}</TableCell>
             <TableCell>{formatDate(job.createdAt)}</TableCell>
-            <TableCell>{job.longDescription}</TableCell>
-            <TableCell>{job.shortDescription}</TableCell>
-            <TableCell>{job.status}</TableCell>
-            <TableCell>{job.title}</TableCell>
             <TableCell>{formatDate(job.updatedAt)}</TableCell>
-            <TableCell>
-              <Link to={job.id}>
-                <ListItemIcon sx={{ cursor: 'pointer' }}>
+            <TableCell>{job.status}</TableCell>
+            <TableCell>{job.shortDescription}</TableCell>
+            <TableCell>{job.longDescription}</TableCell>
+            <TableCell align="center">
+              <Link to={job.id} className="cursor">
+                <ListItemIcon>
                   <EditNote />
                 </ListItemIcon>
               </Link>
-              <ListItemIcon sx={{ cursor: 'pointer' }}>
+              <ListItemIcon className="cursor">
                 <Delete onClick={() => handleDeleteJob(job)} />
               </ListItemIcon>
             </TableCell>

@@ -1,7 +1,7 @@
 import { useSnackbar } from 'notistack';
 import { useNavigate, Link } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
-import { Typography, CircularProgress, Button } from '@mui/material';
+import { Typography, CircularProgress, Button, Box } from '@mui/material';
 
 import { addJob } from 'api/job/addJob/addJob';
 import { parseError } from 'errors/parseError';
@@ -21,7 +21,6 @@ export const AddJob = () => {
     onSuccess: ({ data }: JobResponse) => {
       enqueueSnackbar(`${data.title} has been added`, {
         variant: 'success',
-        autoHideDuration: 1500,
         onExited: () => navigate(Routes.jobs),
       });
     },
@@ -39,19 +38,29 @@ export const AddJob = () => {
   return (
     <>
       <Header title="HR Add Job" />
-      <Typography variant="h3" component="h3">
-        Add Job
-      </Typography>
-      {result.data && (
-        <Typography sx={{ fontSize: 18 }} color="text.secondary">
-          # {result.data.length + 1}
+      <Box className="mb2 flexBetween">
+        <Typography variant="h4" component="h4" className="header">
+          Add Job
         </Typography>
-      )}
-
+        {result.data && (
+          <Typography
+            className="headerNextNumber"
+            sx={{ mr: 'auto', ml: '1rem' }}
+            color="text.secondary"
+          >
+            # {result.data.length + 1}
+          </Typography>
+        )}
+        <Button
+          component={Link}
+          to={Routes.jobs}
+          variant="contained"
+          className="mr3"
+        >
+          Back To List
+        </Button>
+      </Box>
       <EditJobForm type="add" handleEditJobFormSubmission={onSubmit} />
-      <Button component={Link} to={Routes.jobs} variant="contained">
-        Back To List
-      </Button>
     </>
   );
 };

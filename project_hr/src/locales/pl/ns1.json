@@ -20,6 +20,7 @@
     "alreadyHaveAcc": "Masz już konto? Przejdź tutaj!"
   },
   "dashboard": {
+    "panel": "Przejdź do modułu:",
     "tabs": {
       "home": "Strona Główna",
       "jobs": "Prace",
@@ -28,6 +29,37 @@
       "blacklist": "Zablokowani",
       "list": "Lista"
     }
-  }
+  },
+  "tableToolbar": {
+    "add": "Dodaj",
+    "select": "Wybierz",
+    "actions": "Akcje",
+    "actionTypes": {
+      "actions": "Akcje",
+      "delete": "Usuń"
+    },
+    "availableRows": "Zaznacz wiersz:",
+    "showRows": "Wiersze na stronę:",
+    "searchLabel": "Szukaj ..."
+  },
+  "tableCandidates": {
+    "name": "Imię",
+    "position": "Stanowisko",
+    "companyName": "Firma",
+    "createdAt": "Utworzono",
+    "updatedAt": "Zaakualizowano",
+    "shortDescription": "Skrót",
+    "longDescription": "Opis",
+    "": "" 
+   },
+   "tableJobs": {
+    "companyName": "Firma",
+    "createdAt": "Utworzono",
+    "longDescription": "Opis",
+    "shortDescription": "Skrót",
+    "status": "Status",
+    "title": "Stanowisko",
+    "updatedAt": "Zaakualizowano"
+   }
 }
 

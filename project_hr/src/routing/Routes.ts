@@ -21,3 +21,5 @@ export const getSingleCandidateUrl = (candidateId: string) =>
   `${Routes.candidates}/${candidateId}`;
 export const editSingleCandidateUrl = (candidateId: string) =>
   `${Routes.editCandidate}/${candidateId}`;
+
+export type KeyRoutes = keyof typeof Routes;

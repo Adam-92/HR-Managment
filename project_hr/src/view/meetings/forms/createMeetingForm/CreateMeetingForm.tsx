@@ -21,7 +21,6 @@ import type { UseModalForm } from 'view/meetings/modalForm/useModalForm';
 import { AutocompleteSelect } from './AutocompleteSelect';
 import { MeetingType } from './MeetingType/MeetingType';
 import { Place } from './Place/Place';
-// eslint-disable-next-line import/namespace
 import { DateTimePicker } from './DateTimePicker/DateTimePicker';
 
 export type ModalFormProps = {
@@ -50,7 +49,6 @@ export const CreateMeetingForm = ({
       queryClient.invalidateQueries([QUERY_KEY_GET_MEETINGS]);
       enqueueSnackbar(`Meeting has been added`, {
         variant: 'success',
-        autoHideDuration: 1500,
       });
       modal.handleCloseModal();
     },

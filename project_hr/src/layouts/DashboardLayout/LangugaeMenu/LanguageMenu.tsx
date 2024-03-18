@@ -16,9 +16,8 @@ import { MenuItems } from './MenuItems';
 import { theme } from './theme';
 
 export const LanguageMenu = () => {
-  const { open, handleClick, handleClose, anchorEl, currentLanguage } =
+  const { open, handleClick, handleClose, anchorEl, formatedLanguage } =
     useMenu();
-  console.log('🚀 ~ currentLanguage:', currentLanguage);
 
   return (
     <ThemeProvider theme={theme}>
@@ -34,11 +33,7 @@ export const LanguageMenu = () => {
             <ListItemIcon>
               <Language />
             </ListItemIcon>
-            <Typography>
-              {currentLanguage === 'en - US' ||
-                (currentLanguage === 'en' && 'EN')}
-            </Typography>
-            <Typography>{currentLanguage === 'pl' && 'PL'}</Typography>
+            <Typography>{formatedLanguage}</Typography>
           </Box>
         </Button>
         <Menu

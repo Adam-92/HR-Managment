@@ -14,10 +14,9 @@ export const useMenu = () => {
   const handleClose = useCallback(() => {
     setAnchorEl(null);
   }, []);
-  const currentLanguage = i18n.language;
-
+  const formatedLanguage = i18n.language === 'pl' ? 'PL' : 'EN';
   return {
-    currentLanguage,
+    formatedLanguage,
     open,
     handleClick,
     handleClose,

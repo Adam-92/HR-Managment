@@ -30,6 +30,7 @@ export const AutocompleteSelect = ({
       }) => {
         return (
           <Autocomplete
+            className="mb1"
             value={value ?? ''}
             onChange={(event, newValue) => onChange(newValue ?? '')}
             onBlur={onBlur}

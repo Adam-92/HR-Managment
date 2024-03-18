@@ -15,6 +15,7 @@ export const JobReadOnlyForm = ({ defaultValues }: JobReadOnlyFormProps) => {
       sx={{
         '& .MuiTextField-root': { m: 1 },
       }}
+      className="editForm"
     >
       <TextField
         disabled
@@ -22,6 +23,7 @@ export const JobReadOnlyForm = ({ defaultValues }: JobReadOnlyFormProps) => {
         label="id"
         variant="standard"
         defaultValue={defaultValues.id}
+        fullWidth
       />
       <TextField
         disabled
@@ -29,6 +31,7 @@ export const JobReadOnlyForm = ({ defaultValues }: JobReadOnlyFormProps) => {
         label="createdAt"
         variant="standard"
         defaultValue={formatDate(defaultValues.createdAt)}
+        fullWidth
       />
 
       <TextField
@@ -36,18 +39,21 @@ export const JobReadOnlyForm = ({ defaultValues }: JobReadOnlyFormProps) => {
         id="company"
         label="Company"
         defaultValue={defaultValues.companyName}
+        fullWidth
       />
       <TextField
         disabled
         id="title"
         label="Title"
         defaultValue={defaultValues.title}
+        fullWidth
       />
       <TextField
         disabled
         id="shortDescription"
         label="Short Descripion"
         defaultValue={defaultValues.shortDescription}
+        fullWidth
       />
       <TextField
         disabled
@@ -56,6 +62,7 @@ export const JobReadOnlyForm = ({ defaultValues }: JobReadOnlyFormProps) => {
         defaultValue={defaultValues.longDescription}
         multiline
         rows={4}
+        fullWidth
       />
     </Box>
   );

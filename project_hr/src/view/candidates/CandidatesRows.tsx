@@ -57,13 +57,13 @@ export const CandidatesRows = ({ data }: CandidateRowsProps) => {
             <TableCell>{formatDate(candidate.updatedAt)}</TableCell>
             <TableCell>{candidate.shortDescription}</TableCell>
             <TableCell>{candidate.longDescription}</TableCell>
-            <TableCell>
-              <Link to={getSingleCandidateUrl(candidate.id)}>
-                <ListItemIcon sx={{ cursor: 'pointer' }}>
+            <TableCell align="center">
+              <Link to={getSingleCandidateUrl(candidate.id)} className="cursor">
+                <ListItemIcon>
                   <EditNote />
                 </ListItemIcon>
               </Link>
-              <ListItemIcon sx={{ cursor: 'pointer' }}>
+              <ListItemIcon id="cursor">
                 <Delete onClick={() => handleDeleteCandidate(candidate)} />
               </ListItemIcon>
             </TableCell>

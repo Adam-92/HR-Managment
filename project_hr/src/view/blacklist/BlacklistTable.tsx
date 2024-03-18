@@ -48,7 +48,7 @@ export const BlacklistTable = ({ rows }: BlacklistTableProps) => {
               <TableCell component="th" scope="row">
                 {row.name}
               </TableCell>
-              <TableCell align="right">{row.reason}</TableCell>
+              <TableCell align="justify">{row.reason}</TableCell>
             </TableRow>
           ))}
         </TableBody>

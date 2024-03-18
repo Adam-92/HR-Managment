@@ -5,6 +5,7 @@ import {
   Checkbox,
   TableSortLabel,
 } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 
 import { useTable } from 'providers/table/useTable';
 
@@ -17,7 +18,7 @@ type JobColumnsProps = {
 
 export const JobColumns = ({ columns }: JobColumnsProps) => {
   const { checkboxRow } = useTable();
-
+  const { t } = useTranslation();
   return (
     <TableHead>
       <TableRow>
@@ -34,7 +35,7 @@ export const JobColumns = ({ columns }: JobColumnsProps) => {
           return <JobColumn column={column} key={column} />;
         })}
         <TableCell>
-          <TableSortLabel>Actions</TableSortLabel>
+          <TableSortLabel>{t('tableToolbar.actions')}</TableSortLabel>
         </TableCell>
       </TableRow>
     </TableHead>

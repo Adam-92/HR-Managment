@@ -1,5 +1,6 @@
 
-**HR management application. **
+**HR management application**
+
 
 It includes creating candidates and assigning them to job offers, as well as creating appointments in the calendar. 
 

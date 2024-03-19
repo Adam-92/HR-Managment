@@ -1,5 +1,12 @@
-DANE DO LOGOWANIA:
+HR management application. 
+It includes creating candidates and assigning them to job offers, as well as creating appointments in the calendar. 
 
-**Email:**  john.doe@example.com
+Technology stack used: 
 
-**Password:** example
+- React Typescript
+- axios
+- react-query
+- react-router
+
+- Material UI
+- react-hook-form

@@ -19,7 +19,7 @@ import {
 
 import { schema } from './validate';
 
-export const ResetUsername = () => {
+export const ResetUsernameChange = () => {
   const {
     register,
     handleSubmit,

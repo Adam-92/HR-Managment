@@ -18,7 +18,7 @@ import { useLogOut } from '../../../api/logOut/useLogOut';
 
 import { schema } from './validate';
 
-export const ResetPassword = () => {
+export const ResetPasswordChange = () => {
   const {
     register,
     handleSubmit,

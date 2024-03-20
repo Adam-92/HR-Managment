@@ -7,6 +7,7 @@ It includes creating candidates and assigning them to job offers, as well as cre
 The API was created in Python and due to the lack of my authorship it cannot be made available, 
 so here is a YouTube link to a video of how the application works:
 
+**https://www.youtube.com/watch?v=VBsZ2Im0aPU**
 
 **Technology stack used:** 
 
